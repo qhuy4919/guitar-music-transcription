@@ -6,6 +6,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User, Group
 from .models import Comment, File
 
+@login_required(login_url="/login")
+def home(request):
+    return JsonResponse({'success': False, 'message': "Login successful"})
 
 def get_comments(request):
     if request.method == 'GET':
@@ -63,7 +66,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('/home')
+            return JsonResponse({'success': True, 'message': "Create user successful"})
     else:
         form = RegisterForm()
 
