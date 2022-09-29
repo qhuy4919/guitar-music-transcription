@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@coderline/alphatab": "^1.2.2",
     "@gotecq/access": "git+ssh://git@gitlab.com:gotecq/react-lib/access.git#v1.7.28",
     "@gotecq/theme": "git+ssh://git@gitlab.com:gotecq/react-lib/theme.git#v1.5.0",
     "@testing-library/jest-dom": "^5.14.1",
