@@ -5,6 +5,12 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User, Group
 from .models import Comment, File
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render, redirect
+from .helpers import handle_uploaded_file
+
+# from uploadfile.forms import DocumentForm
+# from uploadfile.models import Document
 
 @login_required(login_url="/login")
 def home(request):
@@ -45,21 +51,6 @@ def create_comment(request):
     return JsonResponse({'success': False, 'message': "Url not found"})
 
     
-@login_required(login_url="/login")
-@permission_required("main.add_file", login_url="/login", raise_exception=True)
-def upload_file(request):
-    if request.method == 'POST':
-        form = FileForm(request.POST)
-        if form.is_valid():
-            file = form.save(commit=False)
-            file.user = request.user
-            file.save()
-            return JsonResponse({'success': True, 'message': "Upload file successful"})
-        else: return JsonResponse({'success': False, 'message': "Upload file fail"})
-
-    # return render(request, 'main/create_post.html', {"form": form})
-    return JsonResponse({'success': False, 'message': "Url not found"})
-
 def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -71,3 +62,29 @@ def sign_up(request):
         form = RegisterForm()
 
     return render(request, 'registration/sign_up.html', {"form": form})
+
+# def upload(request):
+#     if request.method == "POST":
+#         form = FileForm(request.POST)
+#         if form.is_valid():
+            
+def upload_form(request):
+    return render(request, 'main/simple_upload.html' )
+
+@login_required(login_url="/login")
+@permission_required("main.add_file", login_url="/login", raise_exception=True)
+def upload_file(request):
+    if request.method == 'POST':
+        form = FileForm(request.POST)
+        if form.is_valid() and request.FILES['file']:
+            path = handle_uploaded_file(request.FILES['file']) 
+            file = form.save(commit=False)
+            file.user = request.user
+            file.inputPath = "/" + path
+            file.outputPath = "/"
+            file.save()
+            return JsonResponse({'success': True, 'message': "Upload file successful"})
+        else: return JsonResponse({'success': False, 'message': "Upload file fail"})
+
+    # return render(request, 'main/create_post.html', {"form": form})
+    return JsonResponse({'success': False, 'message': "Url not found"})

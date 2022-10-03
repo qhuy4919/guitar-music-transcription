@@ -15,9 +15,13 @@ class RegisterForm(UserCreationForm):
 class FileForm(forms.ModelForm):
     class Meta:
         model = File
-        fields = ["name", "inputPath", "outputPath", "description", "datetime"]
+        fields = ["name", "description"]
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ["title", "detail", "rate", "datetime"]
+
+# class UploadForm(forms.ModelForm):
+#     class Meta:
+#         model = fi
