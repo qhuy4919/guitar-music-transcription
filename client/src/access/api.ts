@@ -1,6 +1,6 @@
-import { createURLBuilder } from '@gotecq/access';
+// import { createURLBuilder } from '@gotecq/access';
 
-export const URLBuilder = createURLBuilder({});
+// export const URLBuilder = createURLBuilder({});
 
 export const QueryAPI = {};
 

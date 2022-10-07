@@ -3,8 +3,9 @@ import useAuth from 'src/hook/useAuth'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Form, Input, Button, Checkbox } from 'antd'
 import axios from 'axios'
-import '../register/style.scss';
+import './style.scss'
 const LOGIN_URL = '/auth'
+
 
 export const Login = () => {
   const { setAuth } = useAuth()
@@ -15,13 +16,13 @@ export const Login = () => {
 
   const [form] = Form.useForm()
 
-  const [user, setUser] = useState('')
+  const [userName, setUserName] = useState('')
   const [pwd, setPwd] = useState('')
   const [error, setError] = useState<string>('')
 
-  useEffect(() => {
-    setError('')
-  }, [user, pwd])
+  // useEffect(() => {
+  //   setError('')
+  // }, [user, pwd])
 
   const handleSubmit = async (e: React.FormEvent<any>) => {
     e.preventDefault()
@@ -59,68 +60,43 @@ export const Login = () => {
     setError('')
     form.resetFields()
   }
+  const state = {
+    text: "",
+  };
 
   return (
-    <div className="form-panel">
-      <div className="form-wrapper">
-        <div className="form-header">
-          <p>Log in</p>
+    <div className="container">
+    <div className="img-bg">
+      <img src="https://online.berklee.edu/takenote/wp-content/uploads/2021/01/acoustic_guitar_techniques_article_image_2021.jpg" />
+    </div>
+    <div className="content-container">
+      <div className="content">
+            <div className="login-box">
+      <h2>Login</h2> 
+        <Form>
+        <div className="user-box">
+          <Form />
+          <Input type="text" name="userName" value={userName} placeholder="User name" onChange={ e => setUserName(e.target.value)}/>
         </div>
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: true }}
-          autoComplete="off"
-          form={form}
-          onFinish={handleSubmit}
-        >
-          <Form.Item
-            label="Username"
-            name="username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
-          >
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{ offset: 8, span: 16 }}
-          >
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <Form.Item
-            wrapperCol={{ offset: 8, span: 16 }}
-            className="form-button-section"
-          >
-            <Button type="primary" htmlType="submit">
-              Login
-            </Button>
-            <Button htmlType="button" onClick={onResetField}>
-              Reset
-            </Button>
-          </Form.Item>
-        </Form>
-        {/* {error && <p style={{color: 'red'}}>{error}</p>} */}
-        <p>
-          Don&apos;t have account?{' '}
-          <Link to={'/register'}>
-            <Button type="link" style={{ padding: '0' }}>
-              register
-            </Button>
-          </Link>
-        </p>
+        <div className="user-box">
+          <Form/>
+          <Input type="password" name="pasword" value={pwd} placeholder="Password" onChange={ e => setPwd(e.target.value)}/>
+        </div>
+        <a href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </a>
+      </Form>
+    </div>
       </div>
     </div>
+  
+
+    
+    </div>
+
   )
 }

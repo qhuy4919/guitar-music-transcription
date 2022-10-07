@@ -1,3 +1,3 @@
-import { createRequestor } from '@gotecq/access';
+// import { createRequestor } from '@gotecq/access';
 
-export const Requestor = createRequestor();
+// export const Requestor = createRequestor();
