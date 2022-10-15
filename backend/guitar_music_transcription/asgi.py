@@ -1,5 +1,5 @@
 """
-ASGI config for authtutorial project.
+ASGI config for guitar_music_transcription project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'authtutorial.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'guitar_music_transcription.settings')
 
 application = get_asgi_application()
