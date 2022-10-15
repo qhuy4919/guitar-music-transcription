@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'guitar_music_transcription.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'authentication',
+        'NAME': 'musictransition',
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': 'localhost',
