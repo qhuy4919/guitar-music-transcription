@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^2bu8+$zb5+!g^*v8e3ldhp!ny^7(&381!%deb!5x=h07mu&h+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["52.221.245.51"]
 
 
 # Application definition
@@ -135,3 +135,6 @@ AUTH_USER_MODEL = 'users.User'
 
 CORS_ORIGIN_ALLOW_ALL = True # FRONTEND PORT ACCESS
 CORS_ALLOW_CREDENTIALS = True # fCOOKIES FOR FRONTEND
+
+STATIC_ROOT = '/home/ubuntu/static'
+MEDIA_ROOT = '/home/ubuntu/media'
