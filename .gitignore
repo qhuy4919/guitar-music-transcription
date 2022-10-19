@@ -5,5 +5,11 @@ data/GuitarSet
 data/spec_repr
 model/__pycache__
 model/saved
+testing/
+qhuy/
+env/
+data/__pycache__/
+requirement-01.txt
+main/
 data/nohup.out
 nohup.out

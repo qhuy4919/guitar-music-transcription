@@ -61,6 +61,7 @@ class DataGenerator(keras.utils.all_utils.Sequence):
         for i, ID in enumerate(list_IDs_temp):
             
             # determine filename
+            print('---', ID)
             data_dir = self.data_path + self.spec_repr + "/"
             filename = "_".join(ID.split("_")[:-1]) + ".npz"
             frame_idx = int(ID.split("_")[-1])

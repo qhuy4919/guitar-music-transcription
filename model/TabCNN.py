@@ -37,7 +37,7 @@ class TabCNN:
         
         self.load_IDs()
         
-        self.save_folder = self.save_path + self.spec_repr + " " + datetime.datetime.now().strftime("%Y-%m-%d %H%M%S") + "/"
+        self.save_folder = self.save_path + ' ' + datetime.datetime.now().strftime("%Y-%m-%d %H%M%S") + "/"
         if not os.path.exists(self.save_folder):
             os.makedirs(self.save_folder)
         self.log_file = self.save_folder + "log.txt"
@@ -94,10 +94,9 @@ class TabCNN:
                                                 shuffle=False,
                                                 spec_repr=self.spec_repr, 
                                                 con_win_size=self.con_win_size)
-        
-        self.split_folder = self.save_folder + str(self.data_split) + "/"
-        if not os.path.exists(self.split_folder):
-            os.makedirs(self.split_folder)
+        # self.split_folder = self.save_folder + str(self.data_split) + "/"
+        # if not os.path.exists(self.split_folder):
+        #     os.makedirs(self.split_folder)
                 
     def log_model(self):
         with open(self.log_file,'w') as fh:
@@ -196,18 +195,18 @@ if __name__ == '__main__':
     tabcnn.build_model()
     tabcnn.log_model()
 
-    for fold in range(6):
+    for fold in range(1):
         print("\nfold " + str(fold))
         tabcnn.partition_data(fold)
-        print("building model...")
-        tabcnn.build_model()  
-        print("training...")
-        tabcnn.train()
-        tabcnn.save_weights()
-        print("testing...")
-        tabcnn.test()
-        tabcnn.save_predictions()
-        print("evaluation...")
-        tabcnn.evaluate()
-    print("saving results...")
-    tabcnn.save_results_csv()
+    #     print("building model...")
+    #     tabcnn.build_model()  
+    #     print("training...")
+    #     tabcnn.train()
+    #     tabcnn.save_weights()
+    #     print("testing...")
+    #     tabcnn.test()
+    #     tabcnn.save_predictions()
+    #     print("evaluation...")
+    #     tabcnn.evaluate()
+    # print("saving results...")
+    # tabcnn.save_results_csv()
