@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-^2bu8+$zb5+!g^*v8e3ldhp!ny^7(&381!%deb!5x=h07mu&h+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["52.221.245.51"]
-
+ALLOWED_HOSTS = ['52.221.245.51', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -38,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'users'
+    'users',
+    'audio'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +138,14 @@ CORS_ALLOW_CREDENTIALS = True # fCOOKIES FOR FRONTEND
 
 STATIC_ROOT = '/home/ubuntu/static'
 MEDIA_ROOT = '/home/ubuntu/media'
+
+# REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#             'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
+#             'rest_framework.authentication.SessionAuthentication',
+#             'rest_framework.authentication.TokenAuthentication',
+#    ),
+#    'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAdminUser',
+#    ),
+# }

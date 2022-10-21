@@ -1,3 +1,4 @@
 env
+linux_env
 users/migrations
 **/__pycache__
