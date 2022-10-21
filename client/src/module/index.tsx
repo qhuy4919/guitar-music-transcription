@@ -1,5 +1,8 @@
 export {
     Home,
     Login,
-    Register
+    Register,
+    Addsong,
+    Listsong,
+    Profile
 } from './common';

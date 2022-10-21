@@ -1,0 +1,114 @@
+.vehicles-list-container {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+    &__button-add {
+        position: absolute;
+        left: 87.5%;
+        top: 0%;
+        height: fit-content;
+        width: fit-content;
+        position: relative;
+        background-color: transparent;
+
+        button {
+            height: 5vh;
+            width: 10vw;
+            background-color: #fff;
+            border-radius: 10px;
+            border: none;
+
+            transform: translateY(-50%);
+            color: black;
+
+            .icon {
+                margin-right: 0.5vw;
+                margin-top: 0.5vh;
+            }
+        }
+
+        button:hover {
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+            background-color: #b4e2b3;
+        }
+    }
+
+    &__content::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__content {
+        width: 100%;
+        height: 82vh;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &__sub {
+            width: 100%;
+            height: 80vh;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        &__item {
+            height: 80vh;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            background-color: #fff;
+
+            &__image {
+                width: 85%;
+                height: 85%;
+                margin: auto;
+                border-radius: 20px;
+            }
+
+            &__info {
+                width: 100%;
+                margin: auto 0;
+
+                div {
+                    height: 8vh;
+                    margin: 1vh 0;
+                    display: grid;
+                    grid-template-columns: 35% 65%;
+
+                    span {
+                        font-size: 1.1rem;
+                    }
+
+                    .span1 {
+                        width: 100%;
+                        text-align: right;
+                        font-weight: bold;
+                    }
+
+                    .span2 {
+                        margin-left: 10%;
+
+                        &-red {
+                            margin-left: 10%;
+                            color: red;
+                        }
+
+                        &-green {
+                            margin-left: 10%;
+                            color: #41bc3f;
+                        }
+
+                        &-yellow {
+                            margin-left: 10%;
+                            color: orange;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

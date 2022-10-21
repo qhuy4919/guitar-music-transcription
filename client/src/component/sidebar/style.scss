@@ -1,0 +1,128 @@
+.layout-container {
+    height: 100%;
+    width: 100%;
+}
+.sider-bar {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #fff;
+    flex: 1;
+    transition: 0.1s;
+    z-index: 3;
+    &__logo {
+        height: 7vh;
+        padding: 4px 10px 4px 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        padding: 9px 10px;
+        z-index: 1;
+    }
+    &__link {
+        font-size: medium;
+        color: black;
+    }
+    &__link:link {
+        color: black;
+    }
+    &__link:hover {
+        color: #41bc3f !important;
+    }
+    &__menu {
+        height: 100%;
+        width: 100%;
+        margin-top: 0.1vh;
+    }
+}
+.ant-layout-sider-children {
+    width: 100% !important;
+}
+
+.ant-menu-item-selected,
+.ant-menu-item-selected a,
+.ant-menu-item-selected a:hover {
+    color: #41bc3f;
+}
+.ant-menu-item {
+    margin: 0 !important;
+}
+
+.scoll-menu {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+}
+
+.scoll-menu-button {
+    width: 100%;
+    border: 0;
+    background-color: #b4e2b3 !important ;
+}
+.site-layout {
+    background-color: #41bc3f;
+}
+.sider-bar {
+    min-width: 15vw !important;
+    background-color: #fff;
+}
+
+.logo-full {
+    margin: 0px 8px;
+    background-repeat: no-repeat;
+    height: 7vh;
+    object-fit: contain;
+    background-position: 50% 0;
+    background-size: 40%;
+    background-image: url('../../assets/images/app-logo/header_logo_full.png');
+}
+
+.logo-collapsed {
+    margin: 0px 12px;
+    background-repeat: no-repeat;
+    height: 7vh;
+    object-fit: contain;
+    background-size: 100%;
+    background-image: url('../../assets/images/app-logo/header_logo_collapsed.png');
+}
+
+.ant-layout-sider-collapsed {
+    min-width: 5% !important;
+}
+
+.ant-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.ant-menu-item {
+    color: #000;
+    font-size: 100% !important;
+    padding: 30%;
+    height: fit-content !important;
+}
+
+.ant-menu-item:hover {
+    background-color: #b4e2b3 !important;
+    .ant-menu-title-content {
+        color: #41bc3f !important;
+    }
+    .ant-menu-item-icon {
+        color: #41bc3f !important;
+    }
+}
+
+.ant-menu-item-selected {
+    background-color: #b4e2b3 !important;
+    color: #2d8d2c !important;
+    font-weight: 600;
+}
+
+.ant-menu-item-selected:active {
+    background-color: #b4e2b3 !important;
+    color: #41bc3f;
+    font-weight: 600;
+}
+
+.menu-item-icon {
+    font-size: 140% !important;
+}
