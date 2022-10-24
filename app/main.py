@@ -42,13 +42,16 @@ def upload(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
         buffer = BytesIO(contents)
-        data, samplerate = librosa.load(buffer) 
+        data, samplerate = librosa.load(buffer)
+        data= data.astype(float)
+        data = librosa.util.normalize(data)
         data = np.abs(librosa.cqt(data,
                         hop_length= hop_length, 
                         sr=22050, 
                         n_bins= cqt_n_bins, 
                         bins_per_octave= cqt_bins_per_octave))
         input = np.swapaxes(data,0,1)
+        print(input[0])
         predict_result = AI_MODEL.tab_generator(input)
         return {
             'file_name': file.filename,
