@@ -101,33 +101,17 @@ class AIModel:
         return cont
         
     def tab_generator(self, input):
-        one_hot_output = self.progress(input)
+        tablature = self.progress(input)
         sheet = ""
-        for idx, frm in enumerate(one_hot_output):
-            sheet += self.parse_note(frm)
+        for idx in range(0, len(tablature), 22):
+            sheet += self.parse_note(tablature[idx])
+            if (idx/22+1) % 4 == 0: sheet += " |"
             sheet += " "
+        
         sheet = sheet[:-1]
-        sheet = sheet.replace("r.4 r.4 r.4 r.4", "r.1")
-        sheet = sheet.replace("r.4 r.4", "r.2")
-        sheet = sheet.replace("r.2", "")
-        sheet = sheet.replace("r.1", "")
-        sheet = sheet.replace("r.4", "")
-
-        normalize_tablature = []
-        _sheet = sheet.split(' | ')
-        for idx, frm in enumerate(_sheet):
-            chord = frm.split(' ')
-            normalize_chord = [chord[i] for i in range(len(chord)) if (i==0) or chord[i] != chord[i-1]]
-            normalize_tablature.append(' '.join(map(str,normalize_chord)))
-
-        normalize_tablature_final = ''
-        temp = normalize_tablature[0].replace('  ', ' ').split(' ')
-        for idx, chord in enumerate(temp):
-            normalize_tablature_final += chord + " "
-            if (idx+1) % 4 == 0: normalize_tablature_final += " | "
-        
-        return normalize_tablature_final
-        
+        sheet = sheet.replace('-', ' ')
+        return sheet
+            
 
         
 
