@@ -19,10 +19,8 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model.h5"
 
 class Audio(BaseModel):
-    fiel_id: str
-    file_name: str
-    file_data: UploadFile
-    
+    file_id: str
+        
 AI_MODEL = None
 
 @app.on_event("startup")
@@ -43,36 +41,35 @@ async def index():
     }
 
 @app.post('/tab-generate/')
-def upload(audio: Audio):
+def upload(
+    audio: Audio,
+    resource: UploadFile = File()
+):
     global AI_MODEL
-    _id, file_name, file = audio
     
-    return audio
-    
-    
-    # try:
-    #     contents = file.file.read()
-    #     buffer = BytesIO(contents)
-    #     data, samplerate = librosa.load(buffer)
-    #     data= data.astype(float)
-    #     data = librosa.util.normalize(data)
-    #     data = np.abs(librosa.cqt(data,
-    #                     hop_length= hop_length, 
-    #                     sr=22050, 
-    #                     n_bins= cqt_n_bins, 
-    #                     bins_per_octave= cqt_bins_per_octave))
-    #     input = np.swapaxes(data,0,1)
-    #     print(input[0])
-    #     predict_result = AI_MODEL.tab_generator(input)
-    #     return {
-    #         'file_name': file.filename,
-    #         'tablature': predict_result,
-    #     }
+    try:
+        contents = resource.file.read()
+        buffer = BytesIO(contents)
+        data, samplerate = librosa.load(buffer)
+        data= data.astype(float)
+        data = librosa.util.normalize(data)
+        data = np.abs(librosa.cqt(data,
+                        hop_length= hop_length, 
+                        sr=22050, 
+                        n_bins= cqt_n_bins, 
+                        bins_per_octave= cqt_bins_per_octave))
+        input = np.swapaxes(data,0,1)
+        predict_result = AI_MODEL.tab_generator(input)
+        return {
+            'file_id': resource,
+            'file_name': resource.filename,
+            'tablature': predict_result,
+        }
 
-    # except Exception: 
-    #     return {"message": "There was an error uploading the file"}
-    # finally:
-    #     file.file.close()
+    except Exception: 
+        return {"message": "There was an error uploading the file"}
+    finally:
+        resource.file.close()
 
 
 
