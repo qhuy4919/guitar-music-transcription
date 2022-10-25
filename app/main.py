@@ -40,9 +40,9 @@ async def index():
         'text': 'Hello word'
     }
 
-@app.post('/tab-generate/')
+@app.post('/tab-generate/{file_id}')
 def upload(
-    audio: Audio,
+    file_id,
     resource: UploadFile = File()
 ):
     global AI_MODEL
@@ -61,7 +61,7 @@ def upload(
         input = np.swapaxes(data,0,1)
         predict_result = AI_MODEL.tab_generator(input)
         return {
-            'file_id': resource,
+            'file_id': file_id,
             'file_name': resource.filename,
             'tablature': predict_result,
         }
