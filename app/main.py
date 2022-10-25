@@ -3,6 +3,7 @@ import librosa
 import pathlib
 from io import BytesIO
 from fastapi import FastAPI, File, UploadFile
+from pydantic import BaseModel
 import numpy as np
 from . import (
     model
@@ -17,6 +18,11 @@ sr = 22050
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model.h5"
 
+class Audio(BaseModel):
+    _id: str
+    file_name: str
+    file: None
+    
 AI_MODEL = None
 
 @app.on_event("startup")
@@ -36,9 +42,11 @@ async def index():
         'text': 'Hello word'
     }
 
-@app.post('/upload_audio/')
-def upload(file: UploadFile = File(...)):
+@app.post('tab-generate}')
+def upload(audio: Audio):
     global AI_MODEL
+    _id, file_name, file = audio
+    
     try:
         contents = file.file.read()
         buffer = BytesIO(contents)
