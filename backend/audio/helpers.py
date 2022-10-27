@@ -13,7 +13,7 @@ def open_uploaded_file(path):
     files = {'file': open(APP + path, 'rb')}
     return files
 
-def request_to_server(method, data, files):
+def request_to_server(url, method, data, files):
     response = ""
     method = method.lower()
     if method == 'post':
