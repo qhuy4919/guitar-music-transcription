@@ -46,6 +46,10 @@ def upload(
     files: UploadFile = File()
 ):
     global AI_MODEL
+    try:
+        print(files)
+    except:
+        print('canont read files')
     
     try:
         contents = files.file.read()
