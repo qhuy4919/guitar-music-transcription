@@ -15,12 +15,14 @@ export const Register = () => {
     const navigate = useNavigate()
     const handleSubmit = async (values) => {
         try {
+            delete values["confirm-password"]
             const response = await auth.register(values)
+            console.log(response.data.message)
             alert(response.data.message)
-            navigate('/register')
+            navigate('/login')
         } catch (error) {
             //TODO: hiển bị thông báo theo từng error code (error.request.status === 404)
-            alert(error.response.data.message)
+            alert("Đăng ký không thành công")
         }
     }
     return (
@@ -46,6 +48,27 @@ export const Register = () => {
                             <Form.Item
                                 className="form-item"
                                 name="name"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: messages['name_required'],
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    placeholder="name"
+                                    className="input email"
+                                />
+                            </Form.Item>
+                        </div>
+
+                        <div className="register-container__sub__content__form__item">
+                            <i>
+                                <UserOutlined />
+                            </i>
+                            <Form.Item
+                                className="form-item"
+                                name="username"
                                 rules={[
                                     {
                                         required: true,

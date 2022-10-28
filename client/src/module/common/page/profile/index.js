@@ -17,7 +17,7 @@ export const Profile = () => {
             <div className="title">
                 <span>Profile</span>
                 <Link
-                    // to={`/profile/${user?.id}/edit`}
+                    to={`/edit-profile`}
                     className="profile-content__button-edit"
                 >
                     <EditOutlined />

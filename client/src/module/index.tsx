@@ -4,5 +4,7 @@ export {
     Register,
     Addsong,
     Listsong,
-    Profile
+    Profile,
+    Editprofile,
+    ChangePassword
 } from './common';

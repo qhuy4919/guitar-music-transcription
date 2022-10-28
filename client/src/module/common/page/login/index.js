@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
 import messages from 'src/asset/lang/messages'
 import { Form, Input, Button, Modal } from 'antd'
@@ -8,6 +9,7 @@ import background from 'src/asset/image/background.png'
 import './style.scss'
 
 export const Login = () => {
+    const navigate = useNavigate()
 
     const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -23,15 +25,21 @@ export const Login = () => {
 
     const handleSubmit = async (values) => {
         try {
+            // console.log(values)
             const response = await auth.login(values) 
+            console.log(response)
             if (response.request.status === 200) {
                 // TODO: thành công
-                setToken(response.data.token) // set token sau khi đăng nhập thành công
-                alert(response.data.message)
+                alert("Đăng nhập thành công")
+                // console.log(response.data.token)
+                // setToken(response.data.token) // set token sau khi đăng nhập thành công
+                navigate('/')
+                
             }
         } catch (error) {
             //TODO: hiển bị thông báo theo từng error code (error.request.status === 404)
-            alert(error.response.data.message)
+            console.log(error)
+            // alert("Đăng nhập không thành công")
         }
     }
 

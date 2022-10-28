@@ -10,120 +10,120 @@
     // font-size: 1.1vh;
 }
 
-// .register-container {
-//     overflow: hidden;
-//     width: 100vw;
-//     height: 100vh;
-//     background: #9DE0FF;
-//     display: flex;
-//     &__sub {
-//         box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
-//         transition: 0.3s;
-//         width: 80%;
-//         height: 80%;
-//         background-color: #fff;
-//         border-radius: 20px;
-//         margin: auto;
-//         position: relative;
-//         &__image {
-//             border-radius: 20px;
-//             height: 100%;
-//         }
-//         &__content {
-//             width: 40vw;
-//             height: 100%;
-//             position: absolute;
-//             top: 0;
-//             right: 0;
-//             display: flex;
-//             flex-direction: column;
-//             &__form {
-//                 margin: auto;
-//                 text-align: center;
-//                 .image-avatar {
-//                     height: 10vh;
-//                 }
-//                 h2 {
-//                     font-size: 2.1rem;
-//                     margin: 8px 0;
-//                     text-transform: uppercase;
-//                     color: #555;
-//                 }
-//                 &__item {
-//                     display: flex;
-//                     flex-direction: row;
+.register-container {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: #9DE0FF;
+    display: flex;
+    &__sub {
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+        transition: 0.3s;
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 20px;
+        margin: auto;
+        position: relative;
+        &__image {
+            border-radius: 20px;
+            height: 100%;
+        }
+        &__content {
+            width: 40vw;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            &__form {
+                margin: auto;
+                text-align: center;
+                .image-avatar {
+                    height: 10vh;
+                }
+                h2 {
+                    font-size: 2.1rem;
+                    margin: 8px 0;
+                    text-transform: uppercase;
+                    color: #555;
+                }
+                &__item {
+                    display: flex;
+                    flex-direction: row;
 
-//                     i {
-//                         margin-top: 5px;
-//                         color: #555;
-//                         font-size: 20px;
-//                     }
-//                     .form-item {
-//                         width: 300px;
-//                         margin-left: 10px;
-//                         .input {
-//                             border: none;
-//                             background-color: #fff !important;
-//                             border-bottom: 1px solid #999;
-//                             border-radius: 0 !important;
-//                             padding: 2% 4%;
-//                         }
-//                         .input:hover,
-//                         .input:focus,
-//                         .ant-select-selector:hover,
-//                         .ant-select-selector:focus {
-//                             border-bottom: 2px solid #9DE0FF;
-//                             box-shadow: none;
-//                         }
-//                         .input:not(:focus),
-//                         input:focus,
-//                         .ant-select-selector:focus,
-//                         .ant-select-selector:not(:focus) {
-//                             box-shadow: none;
-//                         }
-//                         .ant-select-selector {
-//                             border: none;
-//                             background-color: #fff !important;
-//                             border-bottom: 1px solid #999;
-//                             border-radius: 0 !important;
-//                             text-align: left;
-//                         }
-//                     }
-//                 }
-//                 .have-an-account {
-//                     color: #555;
-//                     a {
-//                         color: #9DE0FF;
-//                         text-decoration: underline;
-//                     }
-//                 }
-//                 .button-submit {
-//                     display: block;
-//                     width: 100%;
-//                     height: 6vh;
-//                     border-radius: 25px;
-//                     border: none;
-//                     background-image: linear-gradient(
-//                         to right,
-//                         #9DE0FF,
-//                         #55c653,
-//                         #9DE0FF
-//                     );
-//                     background-size: 200%;
-//                     color: #fff;
-//                     margin: 2% 0;
-//                     cursor: pointer;
-//                     transition: 0.5s;
-//                     background-color: #9DE0FF;
-//                     font-size: medium;
-//                 }
-//                 .button-submit:hover {
-//                     background-position: right;
-//                 }
-//             }
-//         }
-//     }
-// }
+                    i {
+                        margin-top: 5px;
+                        color: #555;
+                        font-size: 20px;
+                    }
+                    .form-item {
+                        width: 300px;
+                        margin-left: 10px;
+                        .input {
+                            border: none;
+                            background-color: #fff !important;
+                            border-bottom: 1px solid #999;
+                            border-radius: 0 !important;
+                            padding: 2% 4%;
+                        }
+                        .input:hover,
+                        .input:focus,
+                        .ant-select-selector:hover,
+                        .ant-select-selector:focus {
+                            border-bottom: 2px solid #9DE0FF;
+                            box-shadow: none;
+                        }
+                        .input:not(:focus),
+                        input:focus,
+                        .ant-select-selector:focus,
+                        .ant-select-selector:not(:focus) {
+                            box-shadow: none;
+                        }
+                        .ant-select-selector {
+                            border: none;
+                            background-color: #fff !important;
+                            border-bottom: 1px solid #999;
+                            border-radius: 0 !important;
+                            text-align: left;
+                        }
+                    }
+                }
+                .have-an-account {
+                    color: #555;
+                    a {
+                        color: #9DE0FF;
+                        text-decoration: underline;
+                    }
+                }
+                .button-submit {
+                    display: block;
+                    width: 100%;
+                    height: 6vh;
+                    border-radius: 25px;
+                    border: none;
+                    background-image: linear-gradient(
+                        to right,
+                        #9DE0FF,
+                        #55c653,
+                        #9DE0FF
+                    );
+                    background-size: 200%;
+                    color: #fff;
+                    margin: 2% 0;
+                    cursor: pointer;
+                    transition: 0.5s;
+                    background-color: #9DE0FF;
+                    font-size: medium;
+                }
+                .button-submit:hover {
+                    background-position: right;
+                }
+            }
+        }
+    }
+}
 
 .ant-form-item-explain-error {
     color: #ff4d4f;

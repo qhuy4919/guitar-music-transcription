@@ -2,11 +2,11 @@ import axiosClient from './axiosClient'
 
 const auth = {
     login: (credentials) => {
-        const url = '/login'
+        const url = 'auth/login/'
         return axiosClient.post(url, credentials)
     },
     register: (credentials) => {
-        const url = '/register'
+        const url = 'auth/register/'
         return axiosClient.post(url, credentials)
     },
     getAuthenticatedUser: () => {

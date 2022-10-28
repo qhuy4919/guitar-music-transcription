@@ -20,7 +20,9 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        console.log("token")
         if (token !== 'null') {
+            console.log("abc")
             // Set authenticate token to axios
             axiosClient.defaults.headers.common[
                 'Authorization'
