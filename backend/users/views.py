@@ -16,7 +16,7 @@ class registerAPIView(APIView):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)   #if anything not valid, raise exception
         serializer.save()
-        return Response(serializer.data)
+        return Response({'message:' :'Đăng ký tài khoản thành công!', 'success': True})
 
 
 class LoginAPIView(APIView):
