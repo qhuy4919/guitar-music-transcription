@@ -69,7 +69,7 @@ def upload(
     except Exception: 
         return {"message": "There was an error uploading the file"}
     finally:
-        resource.file.close()
+        files.file.close()
 
 
 
