@@ -40,7 +40,7 @@ async def index():
         'text': 'Hello word'
     }
 
-@app.get('/tab-generate/{file_id}')
+@app.post('/tab-generate/{file_id}')
 def upload(
     file_id,
     files: UploadFile = File()
