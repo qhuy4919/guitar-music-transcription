@@ -25,17 +25,22 @@ class uploadAPIView(APIView):
             serializer.is_valid(raise_exception=True)
             serializer.save()
             str = request.FILES['file'].read().decode()
-            requestData = {}
             files = open_uploaded_file(serializer.data['path'])
+            requestData = {
+                'resource' : files
+            }
+            # files = {
+            #     'resource' : files
+            # }
             tabReceive = request_to_server("tab-generate/{}".format(serializer.data['id']), "post", requestData, files)
             audio = Audio.objects.get(id=serializer.data['id'])
             data = {
-                'code': tabReceive.json()["code"],
-                "audio_id": serializer.data['id'],
+                # 'code': tabReceive.json()["tablature"],
+                # "audio_id": serializer.data['file_id'],
             }
-            tabSerializer = TablatureSerializer(data=data)
-            tabSerializer.is_valid(raise_exception=True)
-            tabSerializer.save()
+            # tabSerializer = TablatureSerializer(data=data)
+            # tabSerializer.is_valid(raise_exception=True)
+            # tabSerializer.save()
             
             return Response(tabReceive.json())
 
