@@ -24,7 +24,7 @@ def request_to_server(url, method, data, files, try_number):
         elif method == 'get':
             return json.loads(requests.get(URL + url, data=data, files=files, headers=headers).text)
     except (requests.exceptions.ConnectionError, json.decoder.JSONDecodeError):
-        time.sleep(try_number + random.random()*0.01) #exponential backoff
+        time.sleep(try_number + random.random()*0.01)
         return request_to_server(url, method, data, files, try_number=try_number+1)
     # case 'update':
     #     response = requests.post(url, data=data)
