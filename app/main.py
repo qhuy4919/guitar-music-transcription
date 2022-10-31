@@ -41,7 +41,7 @@ async def index():
     }
 
 @app.post('/tab-generate/{file_id}')
-def upload(
+async def upload(
     file_id,
     files: UploadFile = File()
 ):
