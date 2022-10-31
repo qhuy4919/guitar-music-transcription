@@ -17,9 +17,9 @@ def request_to_server(url, method, data, files):
     response = ""
     method = method.lower()
     if method == 'post':
-        return requests.post(URL, data=data, files=files)
+        return requests.post(URL + url, data=data, files=files)
     elif method == 'get':
-        return requests.get(URL, data=data, files=files)
+        return requests.get(URL + url, data=data, files=files)
     # case 'update':
     #     response = requests.post(url, data=data)
     # case 'update':
