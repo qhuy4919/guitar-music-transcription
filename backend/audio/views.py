@@ -29,7 +29,7 @@ class uploadAPIView(APIView):
                 requestData = {
                     'files' : files
                 }
-                tabReceive = request_to_server("tab-generate/{}".format(serializer.data['id']), "get", requestData, files)
+                tabReceive = request_to_server("tab-generate/{}".format(serializer.data['id']), "get", requestData, files, 1)
             except NameError:
                 print(NameError)
 
@@ -42,9 +42,7 @@ class uploadAPIView(APIView):
             # tabSerializer.is_valid(raise_exception=True)
             # tabSerializer.save()
             
-            print(tabReceive)
-
-            return Response("abc")
+            return Response(tabReceive)
 
     
     def get(self, request):
