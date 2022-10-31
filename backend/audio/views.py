@@ -8,7 +8,6 @@ from .models import Audio, Tablature
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 import json
-
 from .helpers import *
 
 import requests
@@ -29,20 +28,24 @@ class uploadAPIView(APIView):
                 requestData = {
                     'files' : files
                 }
-                tabReceive = request_to_server("tab-generate/{}".format(serializer.data['id']), "get", requestData, files, 1)
+                tabReceive = request_to_server("tab-generate/{}".format(serializer.data['id']), "post", requestData, files, 1)
             except NameError:
                 print(NameError)
 
             audio = Audio.objects.get(id=serializer.data['id'])
-            data = {
-                # 'code': tabReceive.json()["tablature"],
-                # "audio_id": serializer.data['file_id'],
-            }
-            # tabSerializer = TablatureSerializer(data=data)
-            # tabSerializer.is_valid(raise_exception=True)
-            # tabSerializer.save()
-            
-            return Response(tabReceive)
+            try:
+                data = {
+                    'code': tabReceive["tablature"],
+                    "audio_id": tabReceive['file_id'],
+                }
+                tabSerializer = TablatureSerializer(data=data)
+                tabSerializer.is_valid(raise_exception=True)
+                tabSerializer.save()
+            except NameError:
+                print(NameError)
+            return Response({
+                'tablature': tabSerializer.data['code']
+            })
 
     
     def get(self, request):
