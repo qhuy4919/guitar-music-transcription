@@ -44,6 +44,7 @@ class uploadAPIView(APIView):
             except NameError:
                 print(NameError)
             return Response({
+                'file_id': tabReceive['file_id'],
                 'tablature': tabSerializer.data['code']
             })
 
