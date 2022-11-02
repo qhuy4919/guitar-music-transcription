@@ -31,7 +31,8 @@ class uploadAPIView(APIView):
                 tabReceive = request_to_server("tab-generate/{}".format(serializer.data['id']), "post", requestData, files, 1)
             except NameError:
                 print(NameError)
-
+            if "tablature" not in tabReceive:
+                return Response(tabReceive)
             audio = Audio.objects.get(id=serializer.data['id'])
             try:
                 data = {
