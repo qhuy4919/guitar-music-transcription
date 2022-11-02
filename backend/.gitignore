@@ -5,3 +5,4 @@ audio/migrations
 **/__pycache__
 guitar_music_transcription/__pycache__
 users/__pycache__
+guitar_music_transcription/static
