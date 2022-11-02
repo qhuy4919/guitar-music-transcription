@@ -103,6 +103,7 @@ export const TabSheet = ({ tex }: TabsProps) => {
 
     return (
             <div className="at-wrap">
+
                 <div className="at-overlay">
                 </div>
                 <div className="at-content">
@@ -135,6 +136,13 @@ export const TabSheet = ({ tex }: TabsProps) => {
                         >
                             <CaretRightOutlined className='fa-play' />
                         </Button>
+                        <Button
+                    onClick={(e: any) => {
+                        console.log(tex)
+                    }}
+                >
+                    ahsdadhssdhaasdhh
+                </Button>
                         <span className="at-player-progress">0%</span>
                         <div className="at-song-position">00:00 / 00:00</div>
 

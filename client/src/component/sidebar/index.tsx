@@ -97,49 +97,50 @@ const RenderMenu = () => {
     )
 
     return (
-        <Layout className="layout-container">
-            <Sider
-                width={collapsed ? minimizeSiderWidth : siderWidth}
-                className="sider-bar"
-                trigger={null}
-                collapsible
-                collapsed={collapsed}
-            >
-                <Link to="/" onClick={(e) => onClickLink(e)}>
-                    <div className="sider-bar__logo">
-                        {collapsed === false ? (
-                            <div className="logo-full" />
-                        ) : (
-                            <div className="logo-collapsed" />
-                        )}
-                    </div>
-                </Link>
-                <Menu
-                    defaultSelectedKeys={[defaultSelectedKey]}
-                    defaultOpenKeys={['sub1']}
-                    inlineCollapsed={collapsed}
-                    className="sider-bar__menu"
-                    onSelect={(e) => handleSelectItem(e)}
-                >
-                    {user.role === roles.PARKING_USER
-                        ? // ------------------- PARKING USER -----------------------
-                          parkingUserMenu
-                        : user.role === roles.PARKING_LOT_USER
-                        ? //------------------PARKING-LOT USER---------------------
-                          parkingLotUserMenu
-                        : //------------------------ADMIN--------------------------
-                          adminMenu}
-                    <div className="scoll-menu">
-                        <Button
-                            className="scoll-menu-button"
-                            onClick={toggleCollapsed}
-                        >
-                            {collapsed ? <RightOutlined /> : <LeftOutlined />}
-                        </Button>
-                    </div>
-                </Menu>
-            </Sider>
-        </Layout>
+        <div></div>
+//         <Layout className="layout-container">
+//             <Sider
+//                 width={collapsed ? minimizeSiderWidth : siderWidth}
+//                 className="sider-bar"
+//                 trigger={null}
+//                 collapsible
+//                 collapsed={collapsed}
+//             >
+//                 <Link to="/" onClick={(e) => onClickLink(e)}>
+//                     <div className="sider-bar__logo">
+//                         {collapsed === false ? (
+//                             <div className="logo-full" />
+//                         ) : (
+//                             <div className="logo-collapsed" />
+//                         )}
+//                     </div>
+//                 </Link>
+//                 <Menu
+//                     defaultSelectedKeys={[defaultSelectedKey]}
+//                     defaultOpenKeys={['sub1']}
+//                     inlineCollapsed={collapsed}
+//                     className="sider-bar__menu"
+//                     onSelect={(e) => handleSelectItem(e)}
+//                 >
+//                     {user.role === roles.PARKING_USER
+//                         ? // ------------------- PARKING USER -----------------------
+//                           parkingUserMenu
+//                         : user.role === roles.PARKING_LOT_USER
+//                         ? //------------------PARKING-LOT USER---------------------
+//                           parkingLotUserMenu
+//                         : //------------------------ADMIN--------------------------
+//                           adminMenu}
+//                     <div className="scoll-menu">
+//                         <Button
+//                             className="scoll-menu-button"
+//                             onClick={toggleCollapsed}
+//                         >
+//                             {collapsed ? <RightOutlined /> : <LeftOutlined />}
+//                         </Button>
+//                     </div>
+//                 </Menu>
+//             </Sider>
+//         </Layout>
     )
 }
 
