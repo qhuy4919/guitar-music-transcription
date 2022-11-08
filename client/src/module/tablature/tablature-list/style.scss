@@ -1,0 +1,22 @@
+.tablature-list {
+    height: calc(100vh - 60px);
+
+    .ant-table-wrapper {
+        height: inherit;
+        position: relative;
+
+        .ant-spin-nested-loading, .ant-spin-container {
+            height: inherit;
+        }
+        .ant-spin-container {
+            display: flex;
+            flex-direction: column;
+            .ant-table {
+                flex:1
+            }
+            .ant-pagination {
+                padding-right: 50px;
+            }
+        }
+    }
+}

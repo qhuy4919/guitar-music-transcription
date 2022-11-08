@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { windsong } from 'src/asset';
-import { ParseJson } from 'src/util';
 import type alphaTabType from "@coderline/alphatab";
 import { Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import './style.scss'
 
 declare let alphaTab: typeof alphaTabType;
+
+type SongProps = {
+    bpm?: any;
+    notes: any;
+}
 export type TabsProps = {
     tex?: string;
+    processedSong?: SongProps;
 };
 
-export const TabSheet = ({ tex }: TabsProps) => {
+export const TabSheet = ({ tex, processedSong }: TabsProps) => {
     const tabsEl = useRef<any>(null);
     const [song, setSong] = useState<string>("");
     const [isplaying, setPlaying] = useState<boolean>(false);
@@ -19,9 +23,9 @@ export const TabSheet = ({ tex }: TabsProps) => {
     const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
     useEffect(() => {
-        const processedSong = ParseJson(windsong);
+        console.log(processedSong);
         setSong(
-            `\\tempo ${processedSong.bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong.notes}`
+            `\\tempo ${processedSong?.bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
         );
         if (document.querySelector("#alphaTabScript")) {
             setIsScriptLoaded(true);
@@ -103,7 +107,6 @@ export const TabSheet = ({ tex }: TabsProps) => {
 
     return (
             <div className="at-wrap">
-
                 <div className="at-overlay">
                 </div>
                 <div className="at-content">
@@ -136,13 +139,6 @@ export const TabSheet = ({ tex }: TabsProps) => {
                         >
                             <CaretRightOutlined className='fa-play' />
                         </Button>
-                        <Button
-                    onClick={(e: any) => {
-                        console.log(tex)
-                    }}
-                >
-                    ahsdadhssdhaasdhh
-                </Button>
                         <span className="at-player-progress">0%</span>
                         <div className="at-song-position">00:00 / 00:00</div>
 
