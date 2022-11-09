@@ -1,16 +1,20 @@
 from rest_framework import serializers
-from .models import Audio, Tablature
+from .models import Audio, Tablature, Type
 
 class AudioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Audio
-        fields = ['id', 'name', 'path']
+        fields = ['id', 'name', 'title', 'describe', 'path', 'group']
+
+class TypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = ['name', 'describe']
 
 class TablatureSerializer(serializers.ModelSerializer):
-    # audio = AudioSerializer()
+    audio = AudioSerializer()
+    type = TypeSerializer()
+
     class Meta:
         model = Tablature
-        fields = ['id', 'audio_id', 'code']
-        
-    def create(self, validated_data):
-        return Tablature.objects.create(**validated_data)
+        fields = ['id', 'audio', 'code', "type"]
