@@ -5,10 +5,13 @@ import { CameraOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import messages from 'src/asset/lang/messages'
 import useAuth from 'src/hook/useAuth'
-
+import uploadFile from 'src/access/uploadFile'
+import Modal from 'src/component/modal/Modal'
 import './style.scss'
 const { Option } = Select
 export const Addsong = () => {
+
+    const [str, setstr] = useState("");
 
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
@@ -18,37 +21,40 @@ export const Addsong = () => {
         setIsSelected(true);
     };
 
-    const handleSubmission = () => {
-        console.log("ok")
-        console.log(selectedFile)
-    };
-
     const navigate = useNavigate()
     const { user } = useAuth()
 
     const handleSubmit = async (values) => {
-        console.log("ok")
-        console.log(selectedFile)
 
-        // try {
-        //     const newPackage = {
-        //         parking_lot_id: parseInt(values.parking_lot_id),
-        //         name: values.name,
-        //         type_id: parseInt(values.type_id),
-        //         vehicle_type_id: parseInt(values.vehicle_type_id),
-        //         price: parseInt(values.price),
-        //     }
-            
-        //     alert(response.data.message)
-        //     navigate(`/parking-lots/${values.parking_lot_id}/packages`)
-        // } catch (error) {
-        //     alert(error.response.data.message)
-        // }
+        try {
+            const newSong = new FormData()
+            newSong.append('name',values.name)
+            newSong.append('title',values.title)
+            newSong.append('describe',values.describe)
+            newSong.append('type',"1")
+            newSong.append('group',"123")
+            newSong.append('file',selectedFile)
+
+            const response = await uploadFile.uploadFileSong(newSong)
+            console.log("res",response)
+            setstr(response.data.tablature)
+            // alert(response.data.message)
+
+        } catch (error) {
+            // alert(error.response.data.message)
+        }
+        setModalOpen(true);
     }
 
-
+    const [modalOpen, setModalOpen] = useState(false);
     return (
         <div className="add-package-content">
+            {/* test */}
+            <div className="App">
+
+      {modalOpen && <Modal setOpenModal={setModalOpen} str={str}  />}
+    </div>
+
             <div className="title">Add song</div>
             <Form
                 name="addprofile"
@@ -104,9 +110,6 @@ export const Addsong = () => {
                 </div>
                 <div>
                     <input type="file" name="file" onChange={changeHandler} />
-                    <div>
-                        <button onClick={handleSubmission}>Submit</button>
-                    </div>
                 </div>
 
                 <div className="add-package-content__sub__button">

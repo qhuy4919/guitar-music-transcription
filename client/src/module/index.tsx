@@ -8,5 +8,3 @@ export {
     Editprofile,
     ChangePassword
 } from './common';
-
-export { TablatureList,  TablatureDetail} from './tablature';

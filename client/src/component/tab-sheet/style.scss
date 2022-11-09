@@ -76,11 +76,11 @@
 }
 
 .at-cursor-beat {
-  background: #4f91ff;
+  background: var(--main-antd);
   width: 3px;
 }
 
 .at-cursor-bar {
-  background: #ffd591;
+  background: var(--color-yellow-300);
   opacity: 0.25;
 }

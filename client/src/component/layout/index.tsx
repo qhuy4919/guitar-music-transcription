@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
-import { MailOutlined, AppstoreOutlined, UnorderedListOutlined, LoginOutlined} from '@ant-design/icons';
+import { MailOutlined, AppstoreOutlined} from '@ant-design/icons';
 import './style.scss'
 
 export const Layout = () => {
@@ -16,14 +16,9 @@ export const Layout = () => {
         icon: <MailOutlined />,
       },
       {
-        label: <Link to='/list'>List</Link>,
-        key: 'list',
-        icon: <UnorderedListOutlined />
-      },
-      {
         label: <Link to='/login'>Login</Link>,
         key: 'login',
-        icon: <LoginOutlined />,
+        icon: <AppstoreOutlined />,
       },
       {
         label: <Link to='/register'>Register</Link>,

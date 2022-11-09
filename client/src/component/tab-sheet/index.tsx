@@ -1,21 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { windsong } from 'src/asset';
+import { ParseJson } from 'src/util';
 import type alphaTabType from "@coderline/alphatab";
 import { Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import './style.scss'
 
 declare let alphaTab: typeof alphaTabType;
-
-type SongProps = {
-    bpm?: any;
-    notes: any;
-}
 export type TabsProps = {
     tex?: string;
-    processedSong?: SongProps;
 };
 
-export const TabSheet = ({ tex, processedSong }: TabsProps) => {
+export const TabSheet = ({ tex }: TabsProps) => {
     const tabsEl = useRef<any>(null);
     const [song, setSong] = useState<string>("");
     const [isplaying, setPlaying] = useState<boolean>(false);
@@ -23,9 +19,9 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
     const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
     useEffect(() => {
-        console.log(processedSong);
+        const processedSong = ParseJson(windsong);
         setSong(
-            `\\tempo ${processedSong?.bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
+            `\\tempo ${processedSong.bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong.notes}`
         );
         if (document.querySelector("#alphaTabScript")) {
             setIsScriptLoaded(true);
@@ -107,6 +103,7 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
 
     return (
             <div className="at-wrap">
+
                 <div className="at-overlay">
                 </div>
                 <div className="at-content">
@@ -115,9 +112,11 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                     </div>
                     <div className="at-viewport">
                         <div ref={tabsEl} className="at-main">
-                            {tex || song}
+                            {tex}
+                            {/* {"r.4 (8.4 3.3).4 8.4.4 (6.5 8.4).4 | (6.5 8.4).4 8.3.4 r.4 7.3.4 | r.4 r.4 8.4.4 r.4 | (8.4 3.3).4 r.4 r.4 (5.5 8.3).4 | 6.5.4 r.4 r.4 (6.5 8.4).4 | 6.5.4 r.4 8.3.4 6.4.4 | 9.2.4 9.2.4 9.2.4 9.2.4 | 5.5.4 5.5.4 r.4 r.4 | (5.5 8.3).4 r.4 r.4 r.4 |"} */}
                         </div>
                     </div>
+ 
                 </div>
                 <div className="at-controls">
                     <div className="at-controls-left">                        
@@ -139,8 +138,15 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                         >
                             <CaretRightOutlined className='fa-play' />
                         </Button>
-                        {/* <span className="at-player-progress">0%</span>
-                        <div className="at-song-position">00:00 / 00:00</div> */}
+                        <button
+            onClick={() => {
+              console.log(tex)
+            }}
+          >
+            haha
+          </button>
+                        <span className="at-player-progress">0%</span>
+                        <div className="at-song-position">00:00 / 00:00</div>
 
                     </div>
                 </div>
