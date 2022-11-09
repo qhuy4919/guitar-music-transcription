@@ -115,7 +115,7 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                     </div>
                     <div className="at-viewport">
                         <div ref={tabsEl} className="at-main">
-                            {song}
+                            {tex || song}
                         </div>
                     </div>
                 </div>
@@ -139,8 +139,8 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                         >
                             <CaretRightOutlined className='fa-play' />
                         </Button>
-                        <span className="at-player-progress">0%</span>
-                        <div className="at-song-position">00:00 / 00:00</div>
+                        {/* <span className="at-player-progress">0%</span>
+                        <div className="at-song-position">00:00 / 00:00</div> */}
 
                     </div>
                 </div>
