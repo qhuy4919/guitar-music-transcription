@@ -66,7 +66,7 @@ class uploadAPIView(APIView):
             'success': True,
             'audio': tablature.audio.name,
             'tablature': tablature.code,
-            'type': tablature.type.name
+            'type': tablature.type.name if tablature.type.name else None
         })
 
 class listAudioAPIView(APIView):
