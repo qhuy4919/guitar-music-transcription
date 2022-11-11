@@ -19,8 +19,12 @@ class uploadAPIView(APIView):
     # permission_classes = (IsAuthenticated,)
     def post(self, request):
         try:
-            if len(request.FILES) == 0 or 'name' not in request.POST or 'type' not in request.POST:
-                return Response({"success": False, "message": "Please fill full field"})
+            if len(request.FILES) == 0:
+                return Response({"success": False, "message": "Missing file"})
+            if 'name' not in request.POST:
+                return Response({"success": False, "message": "Missing name"})
+            if 'type' not in request.POST:
+                return Response({"success": False, "message": "Missing type"})
             data = request.data
             data = {
                 "name": request.data["name"],
