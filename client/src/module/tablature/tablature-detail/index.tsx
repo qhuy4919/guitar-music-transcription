@@ -19,10 +19,6 @@ export const TablatureDetail = () => {
         setProcessedSong(ParseJson(data[song_id!]));
     }, [song_id]);
 
-    useEffect(() => {
-        console.log(processedSong);
-    })
-
   return (
     <>
     {

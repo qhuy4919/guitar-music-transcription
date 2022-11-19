@@ -1,136 +1,129 @@
-// * {
-//     padding: 0;
-//     margin: 0;
-//     box-sizing: border-box;
-//     font-family: 'Poppins', sans-serif;
-//     // font-size: 1.1rem;
-// }
-// .ant-select-single .ant-select-selector {
-//     border-radius: 0 !important;
-//     background-color: #fff !important;
-// }
+.ant-select-single .ant-select-selector {
+    border-radius: 0 !important;
+    background-color: #fff !important;
+}
 
-// .add-package-content {
-//     width: 100%;
-//     height: 100%;
-//     border-radius: 20px;
-//     background-color: #fff;
+.add-package-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #fff;
 
-//     &__sub {
-//         width: 100%;
-//         display: flex;
-//         flex-direction: column;
+    &__sub {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
 
-//         &__info {
-//             width: 50%;
-//             margin: 8% auto 0 auto;
+        &__info {
+            width: 50%;
+            margin: 8% auto 0 auto;
 
-//             &__item {
-//                 height: 8.5vh;
-//                 display: grid;
-//                 padding: auto 0;
-//                 grid-template-columns: 30% 70%;
+            &__item {
+                height: 8.5vh;
+                display: grid;
+                padding: auto 0;
+                grid-template-columns: 30% 70%;
 
-//                 .span {
-//                     font-weight: bold;
-//                     text-align: right;
-//                     margin-top: 5px;
-//                     font-size: 1.1rem;
-//                     width: 9vw;
-//                 }
-//                 .textarea {
-//                     height: 15vh !important;
-//                 }
-//                 .text {
-//                     border-color: #9DE0FF !important;
-//                 }
+                .span {
+                    font-weight: bold;
+                    text-align: right;
+                    margin-top: 5px;
+                    font-size: 1.1rem;
+                    width: 9vw;
+                }
+                .textarea {
+                    height: 15vh !important;
+                }
+                .text {
+                    border-color: #9DE0FF !important;
+                }
 
-//                 .textarea:hover {
-//                     box-shadow: 0 0 3px #9DE0FF !important;
-//                 }
+                .textarea:hover {
+                    box-shadow: 0 0 3px #9DE0FF !important;
+                }
 
-//                 .textarea:hover {
-//                     box-shadow: 0 0 3px #9DE0FF !important;
-//                     border-color: #9DE0FF !important;
-//                 }
-//             }
-//         }
-//         &__button {
-//             margin: 6% auto;
-//         }
-//     }
-// }
-// .ant-input-focused,
-// .ant-input:focus {
-//     box-shadow: 0 0 3px #9DE0FF;
-//     border-color: #9DE0FF;
-// }
+                .textarea:hover {
+                    box-shadow: 0 0 3px #9DE0FF !important;
+                    border-color: #9DE0FF !important;
+                }
+            }
+        }
+        &__button {
+            margin: 6% auto;
+        }
+    }
+}
+.ant-input-focused,
+.ant-input:focus {
+    box-shadow: 0 0 3px #9DE0FF;
+    border-color: #9DE0FF;
+}
 
-// .ant-input:hover {
-//     border-color: #9DE0FF;
-//     box-shadow: 0 0 3px #9DE0FF;
-// }
+.ant-input:hover {
+    border-color: #9DE0FF;
+    box-shadow: 0 0 3px #9DE0FF;
+}
 
-// .ant-select-single .ant-select-selector {
-//     border-radius: 0 !important;
-//     background-color: #fff !important;
-// }
-// .ant-select-selector:hover {
-//     border-radius: 0;
-//     box-shadow: 0 0 3px #9DE0FF !important;
-//     border-color: #9DE0FF !important;
-// }
-// .ant-select-selector:focus {
-//     box-shadow: 0 0 3px #9DE0FF !important;
-//     border-color: #9DE0FF !important;
-// }
-// .ant-select-focused:not(.ant-select-disabled) {
-//     box-shadow: 0 0 3px #9DE0FF !important;
-//     border-color: #9DE0FF !important;
-// }
+.ant-select-single .ant-select-selector {
+    border-radius: 0 !important;
+    background-color: #fff !important;
+}
+.ant-select-selector:hover {
+    border-radius: 0;
+    box-shadow: 0 0 3px #9DE0FF !important;
+    border-color: #9DE0FF !important;
+}
+.ant-select-selector:focus {
+    box-shadow: 0 0 3px #9DE0FF !important;
+    border-color: #9DE0FF !important;
+}
+.ant-select-focused:not(.ant-select-disabled) {
+    box-shadow: 0 0 3px #9DE0FF !important;
+    border-color: #9DE0FF !important;
+}
 
-// .title {
-//     width: 100%;
-//     font-size: 2rem;
-//     text-align: center;
-//     padding: 1.5% 0;
-//     color: #9DE0FF;
-//     font-weight: bold;
-// }
+.title {
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1.5% 0;
+    color: #9DE0FF;
+    font-weight: bold;
+}
 
-// .button-blue {
-//     margin: 0 20px;
-//     width: 7vw;
-//     height: 5vh;
-//     border: none;
-//     border-radius: 20px;
-//     color: #000;
-//     font-size: 1.1rem;
-//     text-align: center;
-//     cursor: pointer;
-//     background-color: #b4e2b3;
-// }
-// .button-blue:hover,
-// .button-blue:focus {
-//     box-shadow: 0 0 5px #9DE0FF;
-//     background-color: #9DE0FF;
-//     color: #fff;
-// }
-// .button-gray {
-//     margin: 0 20px;
-//     width: 7vw;
-//     height: 5vh;
-//     border: none;
-//     border-radius: 20px;
-//     color: #000;
-//     font-size: 1.1rem;
-//     text-align: center;
-//     cursor: pointer;
-//     background-color: #c0c0c0;
-// }
-// .button-gray:hover,
-// .button-gray:focus {
-//     box-shadow: 0 0 5px #777;
-//     background-color: #777;
-//     color: #fff;
-// }
+.button-blue {
+    margin: 0 20px;
+    width: 7vw;
+    height: 5vh;
+    border: none;
+    border-radius: 20px;
+    color: #000;
+    font-size: 1.1rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #b4e2b3;
+}
+.button-blue:hover,
+.button-blue:focus {
+    box-shadow: 0 0 5px #9DE0FF;
+    background-color: #9DE0FF;
+    color: #fff;
+}
+.button-gray {
+    margin: 0 20px;
+    width: 7vw;
+    height: 5vh;
+    border: none;
+    border-radius: 20px;
+    color: #000;
+    font-size: 1.1rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #c0c0c0;
+}
+.button-gray:hover,
+.button-gray:focus {
+    box-shadow: 0 0 5px #777;
+    background-color: #777;
+    color: #fff;
+}

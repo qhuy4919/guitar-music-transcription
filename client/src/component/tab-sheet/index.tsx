@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type alphaTabType from "@coderline/alphatab";
 import { Button } from 'antd';
-import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
+import { CaretRightOutlined, PauseOutlined, ReloadOutlined } from '@ant-design/icons';
 import './style.scss'
 
 declare let alphaTab: typeof alphaTabType;
@@ -23,7 +23,6 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
     const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
     useEffect(() => {
-        console.log(processedSong);
         setSong(
             `\\tempo ${processedSong?.bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
         );
@@ -110,9 +109,9 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                 <div className="at-overlay">
                 </div>
                 <div className="at-content">
-                    <div className="at-sidebar">
+                    {/* <div className="at-sidebar">
                         Track selector will go here
-                    </div>
+                    </div> */}
                     <div className="at-viewport">
                         <div ref={tabsEl} className="at-main">
                             {tex || song}
@@ -128,16 +127,21 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                                 setPlaying(false);
                             }}
                         >
-                            <PauseOutlined className='fa-step-backward' />
+                            <ReloadOutlined className='fa-step-backward' />
                         </Button>
                         <Button
+                            key={`${isplaying}`}
                             className="btn at-player-play-pause disabled"
                             onClick={(e: any) => {
                                 alphaTabApi?.current?.playPause();
-                                setPlaying(true);
+                                setPlaying(!isplaying);
                             }}
                         >
-                            <CaretRightOutlined className='fa-play' />
+                            {
+                                isplaying 
+                                ? <CaretRightOutlined className='fa-play' />
+                                : <PauseOutlined/>
+                            }
                         </Button>
                         {/* <span className="at-player-progress">0%</span>
                         <div className="at-song-position">00:00 / 00:00</div> */}
