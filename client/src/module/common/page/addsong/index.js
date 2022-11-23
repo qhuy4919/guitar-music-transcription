@@ -10,7 +10,7 @@ import Modal from 'src/component/modal/Modal'
 import './style.scss'
 const { Option } = Select
 export const Addsong = () => {
-
+    const [bpm, setbpm] = useState("");
     const [str, setstr] = useState("");
 
     const [selectedFile, setSelectedFile] = useState();
@@ -34,9 +34,7 @@ export const Addsong = () => {
             newSong.append('type',"1")
             newSong.append('group',"123")
             newSong.append('file',selectedFile)
-
             const response = await uploadFile.uploadFileSong(newSong)
-            console.log("res",response)
             setstr(response.data.tablature)
             // alert(response.data.message)
 
@@ -92,6 +90,21 @@ export const Addsong = () => {
                         </Form.Item>
                     </div>
 
+                    <div className="add-package-content__sub__info__item">
+                        <span className="span">Bpm</span>
+                        <Form.Item
+                            name="bpm"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: messages['text_required'],
+                                },
+                            ]}
+                        >
+                            <Input className="textbox" size="medium" />
+                        </Form.Item>
+                    </div>
+                    
                     <div className="add-package-content__sub__info__item">
                         <span className="span">Describe</span>
                         <Form.Item
