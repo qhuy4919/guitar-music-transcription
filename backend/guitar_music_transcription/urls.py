@@ -15,9 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView, TemplateView
+from .views import load_txt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('users.urls')),
-    path('audio/', include('audio.urls'))
+    path('audio/', include('audio.urls')),
+    # path(
+    #     "loaderio-87e268fec5cef45fd1b4707dc113b598.txt",
+    #     read_file,
+    # ),
+    path(
+        "loaderio-87e268fec5cef45fd1b4707dc113b598.txt",
+        load_txt
+    )
 ]
