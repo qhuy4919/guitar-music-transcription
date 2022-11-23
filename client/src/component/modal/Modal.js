@@ -3,11 +3,12 @@ import React, {useEffect,useState} from "react";
 import "./Modal.css";
 import { TabSheet } from 'src/component';
 
-function Modal({ setOpenModal,str}) {
+function Modal({ setOpenModal,bpm,str}) {
   const [tab,settab] = useState()
 
+
   useEffect(() => {
-    settab({'bpm':120,'notes':str})
+    settab({'bpm':bpm,'notes':str})
     
   },[str])
 

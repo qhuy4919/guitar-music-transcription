@@ -36,6 +36,8 @@ export const Addsong = () => {
             newSong.append('file',selectedFile)
             const response = await uploadFile.uploadFileSong(newSong)
             setstr(response.data.tablature)
+            setbpm(values.bpm)
+            console.log(values.bpm)
             // alert(response.data.message)
 
         } catch (error) {
@@ -50,7 +52,7 @@ export const Addsong = () => {
             {/* test */}
             <div className="App">
 
-      {modalOpen && <Modal setOpenModal={setModalOpen} str={str}  />}
+      {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={bpm} str={str}  />}
     </div>
 
             <div className="title">Add song</div>
@@ -93,6 +95,7 @@ export const Addsong = () => {
                     <div className="add-package-content__sub__info__item">
                         <span className="span">Bpm</span>
                         <Form.Item
+                            disable="80" 
                             name="bpm"
                             rules={[
                                 {
