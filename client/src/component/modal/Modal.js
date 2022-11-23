@@ -4,10 +4,17 @@ import "./Modal.css";
 import { TabSheet } from 'src/component';
 
 function Modal({ setOpenModal,str}) {
-  const [tab,settab] = useState("")
+  const [tab,settab] = useState()
+
   useEffect(() => {
-    settab(str)
+    settab({'bpm':120,'notes':str})
+    
   },[str])
+
+  useEffect(() => {
+    console.log("abc",tab);
+  })
+
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -19,15 +26,12 @@ function Modal({ setOpenModal,str}) {
           >
             X
           </button>
-          <button
-            onClick={() => {
-              console.log(tab)
-            }}
-          >
-            haha
-          </button>
         </div>
-        <TabSheet TabsProps={tab} />
+        <>
+          {
+              tab && <TabSheet key={1} processedSong={tab}/>
+          }
+        </>
       </div>
     </div>
   );

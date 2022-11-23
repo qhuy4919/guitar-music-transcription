@@ -33,6 +33,7 @@ export const Login = () => {
                 alert("Đăng nhập thành công")
                 // console.log(response.data.token)
                 // setToken(response.data.token) // set token sau khi đăng nhập thành công
+                localStorage.setItem('user', response.data.token)
                 navigate('/')
                 
             }

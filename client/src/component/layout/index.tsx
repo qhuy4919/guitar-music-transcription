@@ -1,14 +1,21 @@
 import React, { useMemo, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import type { MenuProps } from 'antd';
-import { MailOutlined, AppstoreOutlined, UnorderedListOutlined, LoginOutlined} from '@ant-design/icons';
+import { MailOutlined, LogoutOutlined, UnorderedListOutlined, LoginOutlined} from '@ant-design/icons';
 import './style.scss'
 
 export const Layout = () => {
   const [current, setCurrent] = useState('mail');
+  const user = localStorage.getItem("user")|| '{}';
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    window.location.href='/login';
+  };
 
   const items: MenuProps['items'] = useMemo(() => {
+
+    if (user){
     return  [
       {
         label: <Link to='/'>Home</Link>,
@@ -21,16 +28,14 @@ export const Layout = () => {
         icon: <UnorderedListOutlined />
       },
       {
-        label: <Link to='/login'>Login</Link>,
-        key: 'login',
-        icon: <LoginOutlined />,
+        label: <button className="btn-logout"  onClick={handleLogout}>
+           <LogoutOutlined />ㅤLogout     
+        </button>,
+        key: 'logout',
+        
       },
-      {
-        label: <Link to='/register'>Register</Link>,
-        key: 'register',
-        icon: <AppstoreOutlined />,
-      }
-    ]
+    ]}
+  
   }, []);
 
   const handleClickMenu: MenuProps['onClick'] = (e) => {
