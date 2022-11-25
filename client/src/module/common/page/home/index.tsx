@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "src/context/AuthProvider";
 import { TabSheet } from 'src/component';
 import {
@@ -12,10 +12,10 @@ import { Upload, Button } from 'antd';
 import { toast } from 'react-toastify';
 import { InboxOutlined } from '@ant-design/icons';
 import { CommandAPI } from 'src/access';
+import ReactAudioPlayer from 'react-audio-player';
 import './style.scss';
 
 const { Dragger } = Upload;
-
 const FORM_LAYOUT = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -32,6 +32,8 @@ export const Home = () => {
     const navigate = useNavigate();
     const [tabsheet, setTabSheet] = useState<string>('');
     const [isLoading, setLoading] = useState<boolean>(false);
+    const [fileList, setFileList] = useState<any>([]);
+    const [audioResource, setAudioResource] = useState<any>()
 
     const logout = async () => {
         // if used in more components, this should be in context 
@@ -55,18 +57,31 @@ export const Home = () => {
         //     message.error(`${info.file.name} file upload failed.`);
         //   }
         // },
+
+        beforeUpload (file) {
+            setFileList([file]);
+            return false;
+        },
+        onRemove (file: any) {
+            const index = fileList.indexOf(file);
+            const newFileList = [...fileList];
+            newFileList.splice(index, 1);
+            setFileList(newFileList);
+        },
         onDrop(e) {
           console.log('Dropped files', e.dataTransfer.files);
         },
+        fileList: fileList
       };
 
       const handleSubmit = async (values: any) => {
         setLoading(true);
+        console.log(values);
         try {
             const formData = new FormData();
             formData.append('name', values.name);
             formData.append('group', values.group);
-            formData.append('file', values.file.file.originFileObj);
+            formData.append('file', values.file.fileList[0].originFileObj);
             formData.append('type', "1");
 
             const resp = await CommandAPI.song.single(formData);
@@ -88,6 +103,8 @@ export const Home = () => {
         }
     }
 
+    console.log(fileList[0]);
+
     return (
         <div className='home-container'>
             <section id='section-input'>
@@ -106,7 +123,10 @@ export const Home = () => {
                             <Input/>
                         </Form.Item>
                         <Form.Item name='file' label='Upload File' valuePropName="file">
-                        <Dragger {...uploadProps}>
+                        <Dragger 
+                        accept='.wav'
+                        {...uploadProps}
+                        >
                             <p className="ant-upload-drag-icon">
                             <InboxOutlined />
                             </p>
@@ -121,7 +141,20 @@ export const Home = () => {
                     </Form>
                 </div>
                 </Spin>
-            </section>
+                
+            </section>        
+            {
+                fileList[0] && 
+                <div className="original-audio">
+
+                <div className="audio-title">Original Audio: {fileList[0].name ?? 'Unknown'}</div>
+                    <ReactAudioPlayer
+                    key={JSON.stringify(fileList)}
+                    src={URL.createObjectURL(fileList[0])}
+                    controls
+                />
+                </div>
+            }
             <div className="tablature-wrapper">
             <TabSheet key={tabsheet} tex={tabsheet}/>
             </div>

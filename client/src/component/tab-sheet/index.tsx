@@ -158,8 +158,8 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                         >
                             {
                                 isplaying 
-                                ? <CaretRightOutlined className='fa-play' />
-                                : <PauseOutlined/>
+                                ? <PauseOutlined/>
+                                : <CaretRightOutlined className='fa-play' />
                             }
                         </Button>
                         
