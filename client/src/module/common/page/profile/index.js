@@ -1,12 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { EditOutlined } from '@ant-design/icons'
+import auth from 'src/access/auth'
 import './style.scss'
 
 export const Profile = () => {
 
     // const { id } = useParams()
-    // const [user, setUser] = useState({})
+    const [user, setUser] = useState({})
+    
+    useEffect(async() => {
+
+        try {
+            // console.log(values)
+            const response = await auth.getuser() 
+            console.log("abc",response)
+            if (response.request.status === 200) {
+                
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+        // settab({'bpm':bpm,'notes':str})
+        
+      })
+
 
     const handleGetImageError = (e) => {
         // e.target.src = defaultImageUrl.USER_AVATAR

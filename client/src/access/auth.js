@@ -9,8 +9,8 @@ const auth = {
         const url = 'auth/register/'
         return axiosClient.post(url, credentials)
     },
-    getAuthenticatedUser: () => {
-        const url = '/user'
+    getuser: () => {
+        const url = 'auth/user/'
         return axiosClient.get(url)
     },
     forgotPassword: (credentials) => {

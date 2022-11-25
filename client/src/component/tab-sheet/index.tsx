@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type alphaTabType from "@coderline/alphatab";
 import { Button } from 'antd';
-import { CaretRightOutlined, PauseOutlined, ReloadOutlined } from '@ant-design/icons';
+import { CaretRightOutlined, PauseOutlined, ReloadOutlined,EditOutlined } from '@ant-design/icons';
 import './style.scss'
 
 declare let alphaTab: typeof alphaTabType;
@@ -16,6 +16,9 @@ export type TabsProps = {
 };
 
 export const TabSheet = ({ tex, processedSong }: TabsProps) => {
+
+    const Bpmsheet = localStorage.getItem("bpm")|| '80';
+
     const tabsEl = useRef<any>(null);
     const [song, setSong] = useState<string>("");
     const [isplaying, setPlaying] = useState<boolean>(false);
@@ -23,8 +26,10 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
     const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
     useEffect(() => {
+        console.log(Bpmsheet)
+
         setSong(
-            `\\tempo ${processedSong?.bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
+            `\\tempo ${Bpmsheet} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
         );
         if (document.querySelector("#alphaTabScript")) {
             setIsScriptLoaded(true);
@@ -104,6 +109,20 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
         return <div>Loading AlphaTab...</div>;
     }
 
+    const submitBpm = () =>{
+        let bpm = prompt("Please enter bpm you want", "80");
+        // setSong(
+        //     `\\tempo ${bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
+        // );
+        if ( bpm == null ){
+            localStorage.setItem('bpm',"80")
+        }
+        if ( bpm != null) 
+        {
+        localStorage.setItem('bpm',bpm )
+        }
+        window.location.reload();
+    }
     return (
             <div className="at-wrap">
                 <div className="at-overlay">
@@ -143,6 +162,14 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
                                 : <PauseOutlined/>
                             }
                         </Button>
+                        
+                        <Button
+                            className="btn-bpm"
+                            onClick={submitBpm}
+                        >
+                            <EditOutlined/>
+                        </Button>
+
                         {/* <span className="at-player-progress">0%</span>
                         <div className="at-song-position">00:00 / 00:00</div> */}
 

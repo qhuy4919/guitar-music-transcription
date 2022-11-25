@@ -52,7 +52,7 @@ export const Addsong = () => {
             {/* test */}
             <div className="App">
 
-      {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={bpm} str={str}  />}
+      {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"80"} str={str}  />}
     </div>
 
             <div className="title">Add song</div>
@@ -91,23 +91,6 @@ export const Addsong = () => {
                             <Input className="textbox" size="medium" />
                         </Form.Item>
                     </div>
-
-                    <div className="add-package-content__sub__info__item">
-                        <span className="span">Bpm</span>
-                        <Form.Item
-                            disable="80" 
-                            name="bpm"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: messages['text_required'],
-                                },
-                            ]}
-                        >
-                            <Input className="textbox" size="medium" />
-                        </Form.Item>
-                    </div>
-                    
                     <div className="add-package-content__sub__info__item">
                         <span className="span">Describe</span>
                         <Form.Item

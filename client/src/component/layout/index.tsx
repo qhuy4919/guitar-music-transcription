@@ -13,6 +13,11 @@ export const Layout = () => {
     window.location.href='/login';
   };
 
+  const handleProfile = () => {
+    
+    window.location.href='/profile';
+  };
+
   const items: MenuProps['items'] = useMemo(() => {
 
     if (user){
@@ -26,6 +31,13 @@ export const Layout = () => {
         label: <Link to='/list'>List</Link>,
         key: 'list',
         icon: <UnorderedListOutlined />
+      },
+      {
+        label: <button className="btn-logout"  onClick={handleProfile}>
+           <LogoutOutlined />ㅤProfile     
+        </button>,
+        key: 'profile',
+        
       },
       {
         label: <button className="btn-logout"  onClick={handleLogout}>

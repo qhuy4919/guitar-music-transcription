@@ -28,8 +28,9 @@ export const Login = () => {
             // console.log(values)
             const response = await auth.login(values) 
             console.log("abc",response)
+
             if (response.request.status === 200) {
-                // TODO: thành công
+                
                 alert("Đăng nhập thành công")
                 // console.log(response.data.token)
                 // setToken(response.data.token) // set token sau khi đăng nhập thành công
@@ -42,6 +43,7 @@ export const Login = () => {
             console.log(error)
             // alert("Đăng nhập không thành công")
         }
+        
     }
 
     const handleForgotPasswordSubmit = async (values) => {
