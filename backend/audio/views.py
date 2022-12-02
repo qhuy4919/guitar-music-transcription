@@ -19,6 +19,7 @@ class uploadAPIView(APIView):
     # permission_classes = (IsAuthenticated,)
     def post(self, request):
         try:
+            print(request.FILES["file"].read())
             if len(request.FILES) == 0:
                 return Response({"success": False, "message": "Missing file"})
             if 'name' not in request.POST:
@@ -78,7 +79,7 @@ class uploadAPIView(APIView):
                 'type': tablature.type.name if tablature.type else None,
                 'message': 'Transcription success'
             })
-        except:
+        except NameError:
             return Response({
                 'success': False,
                 'message': 'Internal server error'
@@ -91,7 +92,7 @@ class listAudioAPIView(APIView):
             return Response({
                 'success': True,
                 'message': 'Get list audio success',
-                "list-audio": json.loads(listAudio)
+                "list_audio": json.loads(listAudio)
             })
         except:
             return Response({
