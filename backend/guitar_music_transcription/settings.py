@@ -24,7 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
 ALLOWED_HOSTS = ['52.221.245.51', 'localhost', '127.0.0.1']
 
@@ -150,9 +149,10 @@ REST_FRAMEWORK = {
    )
 }
 
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-SECURE_HSTS_PRELOAD = True
+DEBUG = False
+# CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_HSTS_PRELOAD = True
