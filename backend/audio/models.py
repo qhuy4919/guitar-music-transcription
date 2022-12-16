@@ -7,12 +7,14 @@ class Type(models.Model):
 
 class Audio(models.Model):
     name = models.CharField(max_length=255)
+    user_id = models.CharField(max_length=255, null=True)
     title = models.CharField(max_length=255, null=True)
     describe = models.CharField(max_length=255, null=True)
     path = models.CharField(max_length=255)
     group = models.CharField(max_length=255, null=True)
 
 class Tablature(models.Model):
+    user_id = models.CharField(max_length=255, null=True)
     audio = models.OneToOneField(
         Audio,
         on_delete=models.CASCADE
