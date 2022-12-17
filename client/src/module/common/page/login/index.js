@@ -7,6 +7,7 @@ import auth from 'src/access/auth'
 import useAuth from 'src/hook/useAuth'
 import background from 'src/asset/image/background.png'
 import './style.scss'
+import Cookies from 'universal-cookie';
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -21,20 +22,21 @@ export const Login = () => {
     const handleCancel = () => {
         setIsModalVisible(false)
     }
-    const { setToken } = useAuth()  // set token sau khi đăng nhập thành công
+      // set token sau khi đăng nhập thành công
 
     const handleSubmit = async (values) => {
         try {
-            // console.log(values)
+            console.log(values)
             const response = await auth.login(values) 
             console.log("abc",response)
 
             if (response.request.status === 200) {
-                
+                const cookies = new Cookies();
+                cookies.set('jwt',response.data.token)
                 alert("Đăng nhập thành công")
                 // console.log(response.data.token)
                 // setToken(response.data.token) // set token sau khi đăng nhập thành công
-                localStorage.setItem('user', response.data.token)
+                localStorage.setItem('jwt', response.data.token)
                 navigate('/')
                 
             }

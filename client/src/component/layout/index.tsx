@@ -7,9 +7,9 @@ import './style.scss'
 
 export const Layout = () => {
   const [current, setCurrent] = useState('mail');
-  const user = localStorage.getItem("user")|| '{}';
+  const user = localStorage.getItem("jwt")|| '{}';
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('jwt');
     window.location.href='/login';
   };
 

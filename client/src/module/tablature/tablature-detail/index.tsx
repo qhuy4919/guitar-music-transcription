@@ -16,6 +16,7 @@ export const TablatureDetail = () => {
     const [processedSong, setProcessedSong] = useState<any>();
     let { song_id } = useParams();
     useEffect(() => {
+        console.log("1",data)
         setProcessedSong(ParseJson(data[song_id!]));
     }, [song_id]);
 

@@ -7,7 +7,7 @@ const UserContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'))
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('jwt')))
     const [collapsed, setCollapsed] = useState(
         localStorage.getItem('collapsed') === 'true',
     )
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
                         setUser(response.data)
                         localStorage.setItem('token', token)
                         localStorage.setItem(
-                            'user',
+                            'jwt',
                             JSON.stringify(response.data),
                         )
                     })
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
             // User logout
             setUser('null')
             localStorage.setItem('token', null)
-            localStorage.setItem('user', null)
+            localStorage.setItem('jwt', null)
         }
     }, [token, navigate])
 
