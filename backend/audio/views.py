@@ -14,13 +14,13 @@ def getCurrentUserId(request):
     token = request.COOKIES.get('jwt')
 
     if not token:
-        return "User is not authenticated."
+        raise "User is not authenticated."
     
     try:
         payload = jwt.decode(token, 'secret', algorithms="HS256")
 
     except jwt.ExpiredSignatureError:
-        return "User is not authenticated."
+        raise "User is not authenticated."
     
     user = User.objects.filter(id=payload['id']).first()
     serializer = UserSerializer(user)
@@ -38,7 +38,6 @@ class uploadAPIView(APIView):
                     'success': False,
                     'message': 'User is not authenticated.'
                 })
-            print(request.FILES["file"].read())
             if len(request.FILES) == 0:
                 return Response({"success": False, "message": "Missing file"})
             if 'name' not in request.POST:
@@ -115,6 +114,7 @@ class listAudioAPIView(APIView):
                     'success': False,
                     'message': 'User is not authenticated.'
                 })
+            
             listAudio = serializers.serialize("json", Audio.objects.filter(user_id=user_id))  
             return Response({
                 'success': True,
