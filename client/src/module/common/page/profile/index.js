@@ -7,24 +7,24 @@ import './style.scss'
 export const Profile = () => {
 
     // const { id } = useParams()
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
     
-    useEffect(async() => {
+    // useEffect(async() => {
 
-        try {
-            // console.log(values)
-            const response = await auth.getuser() 
-            console.log("abc",response)
-            if (response.request.status === 200) {
+    //     try {
+    //         // console.log(values)
+    //         const response = await auth.getuser() 
+    //         console.log("abc",response)
+    //         if (response.request.status === 200) {
                 
-            }
-        } catch (error) {
-            console.log(error)
-        }
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
 
-        // settab({'bpm':bpm,'notes':str})
+    //     // settab({'bpm':bpm,'notes':str})
         
-      })
+    //   })
 
 
     const handleGetImageError = (e) => {

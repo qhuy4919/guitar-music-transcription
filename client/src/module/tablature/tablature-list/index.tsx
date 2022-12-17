@@ -45,6 +45,8 @@ const dataSource = [
 
 export const TablatureList = () => {
   let navigate = useNavigate();
+
+  
   return (
     <div className='tablature-list'>
         <Table dataSource={dataSource} 
