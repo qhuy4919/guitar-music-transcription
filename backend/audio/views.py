@@ -12,6 +12,8 @@ from users.serializers import UserSerializer
 def getCurrentUserId(request):
     
     token = request.COOKIES.get('jwt')
+    print(token)
+    print("abc")
 
     if not token:
         raise "User is not authenticated."
