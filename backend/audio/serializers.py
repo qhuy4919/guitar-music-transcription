@@ -4,7 +4,7 @@ from .models import Audio, Tablature, Type
 class AudioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Audio
-        fields = ['id', 'name', 'title', 'describe', 'path', 'group']
+        fields = ['id', 'name', 'title', 'describe', 'path', 'group', 'user_id']
 
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,4 +17,4 @@ class TablatureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tablature
-        fields = ['id', 'audio', 'code', "type"]
+        fields = ['id', 'audio', 'code', 'type', 'user_id']

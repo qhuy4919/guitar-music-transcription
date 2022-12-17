@@ -53,6 +53,7 @@ class uploadAPIView(APIView):
                 "group": request.data["group"] if 'group' in request.POST else None,
                 "user_id": user_id,
             }
+            print(data)
             path = handle_uploaded_file(request.FILES['file']) 
             data['path'] = path
             serializer = AudioSerializer(data=data)
