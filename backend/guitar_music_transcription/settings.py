@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'musictransition',
         'USER': 'postgres',
         'PASSWORD': '1',
-        'HOST': 'localhost',
+        'HOST': '172.17.0.1',
         'PORT': '5432'
     }
 }
