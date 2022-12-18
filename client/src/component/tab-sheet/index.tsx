@@ -111,22 +111,21 @@ export const TabSheet = ({ tex, processedSong }: TabsProps) => {
 
     const submitBpm = () =>{
         let bpm = prompt("Please enter bpm you want", "80");
-        // setSong(
-        //     `\\tempo ${bpm} \\tuning e5 b4 g4 d4 a3 e3 . ${processedSong?.notes}`
-        // );
+        localStorage.setItem('modal',"True")
         if ( bpm == null ){
             localStorage.setItem('bpm',"80")
+            localStorage.setItem('modal',"True")
         }
         if ( bpm != null) 
         {
-        localStorage.setItem('bpm',bpm )
+            localStorage.setItem('modal',"True")
+            localStorage.setItem('bpm',bpm )
         }
         window.location.reload();
     }
     return (
             <div className="at-wrap">
-                <div className="at-overlay">
-                </div>
+             
                 <div className="at-content">
                     {/* <div className="at-sidebar">
                         Track selector will go here

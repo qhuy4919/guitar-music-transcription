@@ -23,6 +23,7 @@ function Modal({ setOpenModal,bpm,str}) {
           <button
             onClick={() => {
               setOpenModal(false);
+              localStorage.setItem('modal',"False")
             }}
           >
             X
@@ -30,7 +31,7 @@ function Modal({ setOpenModal,bpm,str}) {
         </div>
         <>
           {
-              tab && <TabSheet key={1} processedSong={tab}/>
+              tab && <TabSheet key={tab} processedSong={tab}/>
           }
         </>
       </div>
