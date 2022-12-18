@@ -12,7 +12,7 @@ const { Option } = Select
 export const Addsong = () => {
     const [bpm, setbpm] = useState("");
     const [str, setstr] = useState("");
-
+    const [fileList, setFileList] = useState([]);
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
 

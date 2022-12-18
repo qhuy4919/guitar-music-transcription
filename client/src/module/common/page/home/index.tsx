@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { InboxOutlined } from '@ant-design/icons';
 import { CommandAPI } from 'src/access';
 import ReactAudioPlayer from 'react-audio-player';
+import uploadFile from 'src/access/uploadFile'
 import './style.scss';
 
 const { Dragger } = Upload;
@@ -46,17 +47,6 @@ export const Home = () => {
     const uploadProps: UploadProps = {
         name: 'file',
         multiple: false,
-        // onChange(info) {
-        //   const { status } = info.file;
-        //   if (status !== 'uploading') {
-        //     console.log(info.file, info.fileList);
-        //   }
-        //   if (status === 'done') {
-        //     message.success(`${info.file.name} file uploaded successfully.`);
-        //   } else if (status === 'error') {
-        //     message.error(`${info.file.name} file upload failed.`);
-        //   }
-        // },
 
         beforeUpload (file) {
             setFileList([file]);
@@ -84,8 +74,7 @@ export const Home = () => {
             formData.append('file', values.file.fileList[0].originFileObj);
             formData.append('type', "1");
 
-            const resp = await CommandAPI.song.single(formData);
-            console.log('resp', resp);
+            const resp =await uploadFile.uploadFileSong(formData)
             if(resp) {
                 setTabSheet(resp.data.tablature);
                 setLoading(true);
@@ -103,10 +92,9 @@ export const Home = () => {
         }
     }
 
-    console.log(fileList[0]);
-
     return (
         <div className='home-container'>
+            {/* {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"80"} str={str}  />} */}
             <section id='section-input'>
                 <Spin spinning={isLoading}>
                 <div className="transcriber-form">

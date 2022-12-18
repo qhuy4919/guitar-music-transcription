@@ -28,7 +28,7 @@ export const Layout = () => {
         icon: <MailOutlined />,
       },
       {
-        label: <Link to='/list'>List</Link>,
+        label: <Link to='/listsong'>List</Link>,
         key: 'list',
         icon: <UnorderedListOutlined />
       },
