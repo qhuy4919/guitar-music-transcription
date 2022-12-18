@@ -179,16 +179,16 @@ class getCodeAPIView(APIView):
                     'success': False,
                     'message': 'User is not authenticated.'
                 })
-            tablature = Tablature.objects.get(id=int(id))
-            if(tablature.id != user_id):
-                data = {
+            try:
+                tablature = Tablature.objects.get(audio=int(id), user_id=user_id)
+            except Tablature.DoesNotExist:
+                return Response({
                     'success': False,
-                    'message': 'User is not authenticated.'
-                }
-            else:
-                data = {
-                    "code": tablature.code
-                }
+                    'message': 'Audio does not exist.'
+                })
+            data = {
+                "code": tablature.code
+            }
             return Response(data)
         except:
             return Response({
