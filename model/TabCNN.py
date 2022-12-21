@@ -15,6 +15,7 @@ import numpy as np
 import datetime
 from Metrics import *
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 class TabCNN:
     
@@ -37,7 +38,7 @@ class TabCNN:
         
         self.load_IDs()
         
-        self.save_folder = self.save_path + ' ' + datetime.datetime.now().strftime("%Y-%m-%d %H%M%S") + "/"
+        self.save_folder = self.save_path + self.spec_repr + " " + datetime.datetime.now().strftime("%Y-%m-%d %H%M%S") + "/"
         if not os.path.exists(self.save_folder):
             os.makedirs(self.save_folder)
         self.log_file = self.save_folder + "log.txt"
@@ -50,7 +51,7 @@ class TabCNN:
         self.metrics["tr"] = []
         self.metrics["tf"] = []
         self.metrics["tdr"] = []
-        self.metrics["data"] = ["g0","g1","g2","g3","g4","g5","mean","std dev"]
+        self.metrics["data"] = ["g0","g1","mean","std dev"]
         
         if self.spec_repr == "c":
             self.input_shape = (192, self.con_win_size, 1)
@@ -94,9 +95,10 @@ class TabCNN:
                                                 shuffle=False,
                                                 spec_repr=self.spec_repr, 
                                                 con_win_size=self.con_win_size)
-        # self.split_folder = self.save_folder + str(self.data_split) + "/"
-        # if not os.path.exists(self.split_folder):
-        #     os.makedirs(self.split_folder)
+        
+        self.split_folder = self.save_folder + str(self.data_split) + "/"
+        if not os.path.exists(self.split_folder):
+            os.makedirs(self.split_folder)
                 
     def log_model(self):
         with open(self.log_file,'w') as fh:
@@ -149,10 +151,11 @@ class TabCNN:
     def train(self):
         self.model.fit_generator(generator=self.training_generator,
                     validation_data=None,
-                    epochs=self.epochs,
+                    epochs=1,
                     verbose=1,
                     use_multiprocessing=True,
                     workers=9)
+        
         
     def save_weights(self):
         self.model.save_weights(self.split_folder + "weights.h5")
@@ -184,6 +187,23 @@ class TabCNN:
         output["data"] =  self.metrics["data"]
         df = pd.DataFrame.from_dict(output)
         df.to_csv(self.save_folder + "results.csv") 
+
+        # summarize history for accuracy
+        plt.plot(self.model.history['accuracy'])
+        plt.plot(self.model.history['val_accuracy'])
+        plt.title('model accuracy')
+        plt.ylabel('accuracy')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        plt.show()
+        # summarize history for loss
+        plt.plot(self.model.history['loss'])
+        plt.plot(self.model.history['val_loss'])
+        plt.title('model loss')
+        plt.ylabel('loss')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        plt.show()
         
 ##################################
 ########### EXPERIMENT ###########
@@ -198,15 +218,15 @@ if __name__ == '__main__':
     for fold in range(1):
         print("\nfold " + str(fold))
         tabcnn.partition_data(fold)
-    #     print("building model...")
-    #     tabcnn.build_model()  
-    #     print("training...")
-    #     tabcnn.train()
-    #     tabcnn.save_weights()
-    #     print("testing...")
-    #     tabcnn.test()
-    #     tabcnn.save_predictions()
-    #     print("evaluation...")
-    #     tabcnn.evaluate()
-    # print("saving results...")
-    # tabcnn.save_results_csv()
+        print("building model...")
+        tabcnn.build_model()  
+        print("training...")
+        tabcnn.train()
+        tabcnn.save_weights()
+        print("testing...")
+        tabcnn.test()
+        tabcnn.save_predictions()
+        print("evaluation...")
+        tabcnn.evaluate()
+    print("saving results...")
+    tabcnn.save_results_csv()

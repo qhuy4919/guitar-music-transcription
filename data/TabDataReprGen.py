@@ -137,7 +137,6 @@ class TabDataReprGen:
         # returns the filename with no extension
         filenames = np.sort(np.array(os.listdir(self.path_anno)))
         filenames = list(filter(lambda x: x[-5:] == ".jams", filenames))
-        print(n)
         return filenames[n][:-5] 
     
     def load_and_save_repr_nth_file(self, n):
@@ -173,3 +172,4 @@ if __name__ == "__main__":
                 
                 
                 
+1

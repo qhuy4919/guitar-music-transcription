@@ -11,6 +11,7 @@ def tab2pitch(tab):
         if fret_class > 0:
             pitch_num = fret_class + string_pitches[string_num] - 41
             pitch_vector[pitch_num] = 1
+    print(pitch_vector)
     return pitch_vector
 
 def tab2bin(tab):
