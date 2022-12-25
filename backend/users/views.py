@@ -141,17 +141,17 @@ class profile(APIView):
             if "name" in request.POST:
                 user.name = request.POST["name"] if request.POST["name"] != user.name else user.name
             if "email" in request.POST:
+                user_mail_check = User.objects.filter(email=request.POST["email"]).first()
+                if user_mail_check and user_mail_check.id != user.id and user_mail_check.email == request.POST["email"]:
+                    return Response({
+                        'success': False,
+                        'message': 'Email already exists'
+                    })
                 user.email = request.POST["email"] if request.POST["email"] != user.email else user.email
         except:
             return Response({
                 'success': False,
                 'message': 'User is not authenticated.'
-            })
-        user_mail_check = User.objects.filter(email=request.POST["email"]).first()
-        if user_mail_check and user_mail_check.id != user.id and user_mail_check.email == request.POST["email"]:
-            return Response({
-                'success': False,
-                'message': 'Email already exists'
             })
         user.save()
         return Response({
