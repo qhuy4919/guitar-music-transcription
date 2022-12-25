@@ -15,6 +15,7 @@ import { CommandAPI } from 'src/access';
 import ReactAudioPlayer from 'react-audio-player';
 import uploadFile from 'src/access/uploadFile'
 import './style.scss';
+import axios from 'axios'
 
 const { Dragger } = Upload;
 const FORM_LAYOUT = {
@@ -35,13 +36,6 @@ export const Home = () => {
     const [isLoading, setLoading] = useState<boolean>(false);
     const [fileList, setFileList] = useState<any>([]);
     const [audioResource, setAudioResource] = useState<any>()
-
-    const logout = async () => {
-        // if used in more components, this should be in context 
-        // axios to /logout endpoint 
-        setAuth({});
-        navigate('/linkpage');
-    }
 
 
     const uploadProps: UploadProps = {
@@ -73,8 +67,10 @@ export const Home = () => {
             formData.append('group', values.group);
             formData.append('file', values.file.fileList[0].originFileObj);
             formData.append('type', "1");
-
-            const resp =await uploadFile.uploadFileSong(formData)
+            const headers = { 
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            };
+            const resp = await axios.post('https://chexanhblog.online/audio/upload/',formData, { headers })
             if(resp) {
                 setTabSheet(resp.data.tablature);
                 setLoading(true);
@@ -94,6 +90,7 @@ export const Home = () => {
 
     return (
         <div className='home-container'>
+            <div className="title">Upload song</div>
             {/* {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"80"} str={str}  />} */}
             <section id='section-input'>
                 <Spin spinning={isLoading}>

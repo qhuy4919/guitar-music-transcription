@@ -1,46 +1,41 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link, useParams, Navigate } from 'react-router-dom'
 import { Input, Radio, Form, Button, DatePicker } from 'antd'
-import { CameraOutlined } from '@ant-design/icons'
-import moment from 'moment'
 import messages from 'src/asset/lang/messages'
+import auth from 'src/access/auth'
 import './style.scss'
 
 export const Editprofile = () => {
-    const navigate = useNavigate()
-    const { id } = useParams()
+
     const [user, setUser] = useState({})
-    const [uploadAvatar, setUploadAvatar] = useState()
+    const navigate = useNavigate()
 
+    useEffect(() => {
+        try {
+            auth.getuser().then((response)=>{
+                setUser(response.data)
+            })
 
-    // const avatarURL = process.env.REACT_APP_API_URL + user.UserInfo?.avatar
-    const handleUploadImage = (e) => {
-        const userAvatar = document.getElementById('user-avatar')
-        userAvatar.src = URL.createObjectURL(e.target.files[0])
-        setUploadAvatar(e.target.files[0])
+        } catch (error) {
+        }
+      },[])
+
+    const handleSubmit = async (values) => {
+
+        try {
+            const newEdit = new FormData()
+            newEdit.append('name',values.name)
+            newEdit.append('email',values.email)
+
+            const response = await auth.edituser(newEdit)
+            console.log(values)
+            alert(response.data.message)
+            navigate('/profile')
+            window.location.reload()
+        } catch (error) {
+            alert(error.response.data.message)
+        }
     }
-
-    // const handleGetImageError = (e) => {
-    //     e.target.src = defaultImageUrl.USER_AVATAR
-    // }
-
-    // const handleSubmit = async (values) => {
-    //     try {
-    //         const response = await userApi.updateById(user.id, values)
-
-    //         if (uploadAvatar) {
-    //             const postData = new FormData()
-    //             postData.append('user-avatar', uploadAvatar)
-    //             uploadImageApi.uploadUserAvatar(user?.id, postData)
-    //         }
-
-    //         alert(response.data.message)
-    //         navigate(`/profile/${user.id}`)
-    //         window.location.reload()
-    //     } catch (error) {
-    //         alert(error.response.data.message)
-    //     }
-    // }
 
     return (
         <div className="edit-profile-content">
@@ -48,59 +43,28 @@ export const Editprofile = () => {
             <Form
                 name="edit-profile"
                 className="edit-profile-content__sub"
-                // onFinish={handleSubmit}
+                onFinish={handleSubmit}
                 fields={[
                     {
                         name: ['name'],
                         value: user.name,
                     },
                     {
+                        name: ['username'],
+                        value: user.username,
+                    },
+                    {
                         name: ['email'],
                         value: user.email,
-                    },
-                    {
-                        name: ['gender'],
-                        value: user.UserInfo?.gender ? 1 : 0,
-                    },
-                    {
-                        name: ['birthday'],
-                        value: moment(user.UserInfo?.birthday, 'YYYY/MM/DD'),
-                    },
-                    {
-                        name: ['address'],
-                        value: user.UserInfo?.address,
-                    },
-                    {
-                        name: ['phone_number'],
-                        value: user.UserInfo?.phone_number,
-                    },
+                    }
                 ]}
             >
-                <div className="edit-profile-content__sub__avatar">
-                    <img
-                        id="user-avatar"
-                        // src={avatarURL}
-                        alt="avatar"
-                        // onError={handleGetImageError}
-                    />
-                    <div className="edit-profile-content__sub__avatar__button-upload">
-                        <label for="image-input">
-                            <CameraOutlined className="edit-profile-content__sub__avatar__icon" />
-                        </label>
-                        <input
-                            id="image-input"
-                            accept="image/png, image/jpeg"
-                            type="file"
-                            onChange={handleUploadImage}
-                        />
-                    </div>
-                </div>
                 <div className="edit-profile-content__sub__info">
                     <div className="edit-profile-content__sub__info__item">
-                        <span className="span">Tên</span>
+                        <span className="span">Name</span>
                         <Form.Item
                             name="name"
-                            initialValue={user.name ? user.name : 'sd'}
+                            initialValue={user.name}
                             rules={[
                                 {
                                     required: true,
@@ -110,9 +74,31 @@ export const Editprofile = () => {
                         >
                             <Input
                                 type="name"
-                                placeholder="Username"
+                                placeholder="name"
                                 size="large"
                                 className="textbox"
+                            />
+                        </Form.Item>
+                    </div>
+
+                    <div className="edit-profile-content__sub__info__item">
+                        <span className="span">User name</span>
+                        <Form.Item
+                            name="username"
+                            initialValue={user.username}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: messages['name_required'],
+                                },
+                            ]}
+                        >
+                            <Input
+                                type="username"
+                                placeholder="username"
+                                size="large"
+                                className="textbox"
+                                readonly="readonly"
                             />
                         </Form.Item>
                     </div>
@@ -142,91 +128,17 @@ export const Editprofile = () => {
                         </Form.Item>
                     </div>
 
-                    <div className="edit-profile-content__sub__info__item">
-                        <span className="span">Giới tính</span>
-                        <Form.Item name="gender">
-                            <Radio.Group defaultValue={user.gender ? 1 : 0}>
-                                <Radio value={1}>Nam</Radio>
-                                <Radio value={0}>Nữ</Radio>
-                            </Radio.Group>
-                        </Form.Item>
-                    </div>
-
-                    <div className="edit-profile-content__sub__info__item">
-                        <span className="span">Ngày sinh</span>
-                        <Form.Item
-                            name="birthday"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: messages['birthday_required'],
-                                },
-                            ]}
-                        >
-                            <DatePicker
-                                size="medium"
-                                defaultValue={moment(
-                                    user.birthday,
-                                    'YYYY/MM/DD',
-                                )}
-                                format="DD/MM/YYYY"
-                            />
-                        </Form.Item>
-                    </div>
-
-                    <div className="edit-profile-content__sub__info__item">
-                        <span className="span">Địa chỉ</span>
-                        <Form.Item
-                            name="address"
-                            initialValue={user.UserInfo?.address}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: messages['address_required'],
-                                },
-                            ]}
-                        >
-                            <Input
-                                className="textbox"
-                                size="medium"
-                                maxLength="1000"
-                            />
-                        </Form.Item>
-                    </div>
-
-                    <div className="edit-profile-content__sub__info__item">
-                        <span className="span">Số điện thoại</span>
-                        <Form.Item
-                            name="phone_number"
-                            initialValue={user.UserInfo?.phone_number}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: messages['phone_number_required'],
-                                },
-                                {
-                                    pattern: '^([-]?[0-9][0-9]*|0)$',
-                                    min: 10,
-                                    max: 10,
-                                    message: messages['invalid_phone_number'],
-                                },
-                            ]}
-                        >
-                            <Input className="textbox" size="medium" />
-                        </Form.Item>
-                    </div>
-
-                    <div className="edit-profile-content__sub__info__button">
+                    <div className="button-edit">
                         <Button className="button-gray">
-                            <Link to={`/profile`}>Thoát</Link>
+                            <Link to={`/profile`}>Cancel</Link>
                         </Button>
                         <Button
-                            className="button-green"
-                            type="primary"
-                            htmlType="submit"
-                        >
-                            Lưu
-                        </Button>
+                        className="button-blue"
+                        type="primary"
+                        htmlType="submit"
+                    >
+                        Save
+                    </Button>
                     </div>
                 </div>
             </Form>

@@ -10,15 +10,15 @@ const auth = {
         return axiosClient.post(url, credentials)
     },
     getuser: () => {
-        const url = 'auth/user/'
+        const url = 'auth/profile/'
         return axiosClient.get(url)
     },
-    forgotPassword: (credentials) => {
-        const url = '/forgot-password'
-        return axiosClient.post(url, credentials)
+    edituser: (credentials) => {
+        const url = 'auth/profile/'
+        return axiosClient.post(url,credentials)
     },
     changePassword: (credentials) => {
-        const url = '/change-password'
+        const url = '/auth/change-password/'
         return axiosClient.post(url, credentials)
     },
 }

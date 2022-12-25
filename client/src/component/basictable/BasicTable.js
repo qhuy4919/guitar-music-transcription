@@ -30,15 +30,15 @@ export const BasicTable = () => {
   }, [])
   const columns = [
     { field: 'pk', headerName: 'Id', width: 130 },
-    { field: 'name', headerName: 'Name', width: 130 },
-    { field: 'title', headerName: 'Title', width: 130 },
-    { field: 'describe', headerName: 'Describe', width: 130 },
-    { field: 'group', headerName: 'Group', width: 130 },
+    { field: 'name', headerName: 'Name', width: 250 },
+    { field: 'title', headerName: 'Title', width: 250 },
+    { field: 'describe', headerName: 'Describe', width: 250 },
+    { field: 'group', headerName: 'Group', width: 250 },
     {
       field: "action",
       headerName: "Action",
 
-      flex: 130,
+      flex: 250,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -68,7 +68,7 @@ export const BasicTable = () => {
 
   return (
     <div>
-    <div style={{ height: 550, width: '90%' }}>
+    <div style={{ height: 550, width: '100%' }}>
       
       <DataGrid
         rows={dataSource}

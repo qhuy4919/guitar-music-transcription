@@ -1,14 +1,16 @@
 import axios from 'axios'
 import { stringify } from "qs";
-import queryString from 'query-string'
 
 const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
 
     headers: {
         // 'content-type': 'application/json',
-    //     // jwt: `Bearer ${localStorage['jwt']}`,
-        Authorization: `Bearer ${localStorage['jwt']}`,
+    //     // jwt: `Bearer ${localStorage['jwt']}`,localStorage.getItem('jwt')
+        // Authorization: `Bearer ${localStorage['jwt']}`,
+        // Authorization: 'Bearer '+ (typeof window !== 'undefined' ? localStorage.getItem('jwt') : null),
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        // Authorization: 'Bearer ' + items,
     //     // Cookie: `jwt=${localStorage['jwt']};`
     },
     
