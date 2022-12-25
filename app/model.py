@@ -103,9 +103,9 @@ class AIModel:
     def tab_generator(self, input):
         tablature = self.progress(input)
         sheet = ""
-        for idx in range(0, len(tablature), 22):
+        for idx in range(0, len(tablature), 10):
             sheet += self.parse_note(tablature[idx])
-            if (idx/22+1) % 4 == 0: sheet += " |"
+            if (idx/10+1) % 4 == 0: sheet += " |"
             sheet += " "
         
         sheet = sheet[:-1]
