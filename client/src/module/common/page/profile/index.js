@@ -6,30 +6,20 @@ import './style.scss'
 
 export const Profile = () => {
 
-    // const { id } = useParams()
-    // const [user, setUser] = useState({})
+    const [user, setUser] = useState({})
     
-    // useEffect(async() => {
+    useEffect(() => {
 
-    //     try {
-    //         // console.log(values)
-    //         const response = await auth.getuser() 
-    //         console.log("abc",response)
-    //         if (response.request.status === 200) {
-                
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
+        try {
 
-    //     // settab({'bpm':bpm,'notes':str})
-        
-    //   })
+            auth.getuser().then((response)=>{
+                setUser(response.data)
+            })
 
+        } catch (error) {
+        }
+      },[])
 
-    const handleGetImageError = (e) => {
-        // e.target.src = defaultImageUrl.USER_AVATAR
-    }
 
     return (
         <div className="profile-content">
@@ -44,51 +34,30 @@ export const Profile = () => {
             </div>
 
             <div className="profile-content__sub">
-                <div className="profile-content__sub__avatar">
-                    <img
-                        // src={
-                        //     process.env.REACT_APP_API_URL +
-                        //     user.UserInfo?.avatar
-                        // }
-                        alt="avatar"
-                        onError={handleGetImageError}
-                    />
-                </div>
 
                 <div className="profile-content__sub__info">
                     <div>
-                        <span className="properties">Tên</span>
-                        {/* <span>{user.name}</span> */}
-                        <span>nguyen pham nhat hao</span>
+                        <span className="properties">Name</span>
+                        <span>{user.name}</span>
                     </div>
                     <div>
-                        <span className="properties">Email</span>
-                        {/* <span>{user.email}</span> */}
-                        <span>gmail@gmail.com</span>
+                        <span className="properties">Username</span>
+                        <span>{user.username}</span>
                     </div>
                     <div>
-                        <span className="properties">Giới tính</span>
-                        {/* <span>{user.UserInfo?.gender ? 'Nam' : 'Nữ'}</span> */}
-                        <span>Nam</span>
+                    <span className="properties">Email</span>
+                        <span>{user.email}</span>
                     </div>
                     <div>
-                        <span className="properties">Ngày sinh</span>
-                        {/* <span>
-                            {new Date(
-                                user.UserInfo?.birthday,
-                            ).toLocaleDateString('en-GB')}
-                        </span> */}
-                        <span>1/1/2001</span>
+                    <span className="properties">Password</span>
+                        <span>*********</span>
                     </div>
                     <div>
-                        <span className="properties">Địa chỉ</span>
-                        {/* <span>{user.UserInfo?.address}</span> */}
-                        <span>da nang city</span>
-                    </div>
-                    <div>
-                        <span className="properties">Số điện thoại</span>
-                        {/* <span>{user.UserInfo?.phone_number}</span> */}
-                        <span>0123456789</span>
+                    <span className="properties"> </span>
+                        <span>                        
+                            <a className="create-account" href="/change-password">
+                            Change password
+                        </a></span>
                     </div>
                 </div>
             </div>

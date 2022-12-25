@@ -1,22 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import messages from 'src/asset/lang/messages'
 import { Form, Input } from 'antd'
-import useAuth from 'src/hook/useAuth'
-
+import auth from 'src/access/auth'
 import './style.scss'
+
 export const ChangePassword = () => {
+    const [user, setUser] = useState({})
     const navigate = useNavigate()
-    const { user } = useAuth()
+
+    useEffect(() => {
+        try {
+            auth.getuser().then((response)=>{
+                setUser(response.data)
+            })
+
+        } catch (error) {
+        }
+      },[])
+
     const handleSubmit = async (values) => {
-        // try {
-        //     const response = await auth.changePassword(values)
-        //     alert(response.data.message)
-        //     navigate(`/profile/${user.id}`)
-        // } catch (error) {
-        //     //TODO: hiển bị thông báo theo từng error code (error.request.status === 404)
-        //     alert(error.response.data.message)
-        // }
+        try {
+            console.log(values)
+            const newPass = new FormData()
+            newPass.append('old_password',values.currentPassword)
+            newPass.append('new_password',values.newPassword)
+
+            console.log(newPass)
+            const response = await auth.changePassword(newPass)
+            alert(response.data.message)
+            navigate(`/profile/`)
+        } catch (error) {
+            //TODO: hiển bị thông báo theo từng error code (error.request.status === 404)
+            alert(error.response.data.message)
+        }
     }
     return (
         <div className="change-password-content">

@@ -36,9 +36,9 @@ export const Login = () => {
                 alert("Đăng nhập thành công")
                 // console.log(response.data.token)
                 // setToken(response.data.token) // set token sau khi đăng nhập thành công
-                localStorage.setItem('jwt', response.data.token)
+                localStorage.setItem('jwt', response.data.token)       
+
                 navigate('/')
-                
             }
         } catch (error) {
             //TODO: hiển bị thông báo theo từng error code (error.request.status === 404)
