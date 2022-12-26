@@ -110,6 +110,8 @@ class AIModel:
         
         sheet = sheet[:-1]
         sheet = sheet.replace('-', ' ')
+        #remove all silent box
+        sheet = sheet.replace('| r.4 r.4 r.4 r.4 |' , '|')
         return sheet
             
 
