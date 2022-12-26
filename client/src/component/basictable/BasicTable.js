@@ -78,6 +78,6 @@ export const BasicTable = () => {
         disableSelectionOnClick
       />
     </div>
-    {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"80"} str={str}  />}</div>
+    {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"200"} str={str}  />}</div>
   );
 };
