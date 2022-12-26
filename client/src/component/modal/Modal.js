@@ -24,6 +24,7 @@ function Modal({ setOpenModal,bpm,str}) {
             onClick={() => {
               setOpenModal(false);
               localStorage.setItem('modal',"False")
+              localStorage.setItem('bpm',"200")
             }}
           >
             X

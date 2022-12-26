@@ -17,7 +17,7 @@ export type TabsProps = {
 
 export const TabSheet = ({ tex, processedSong }: TabsProps) => {
 
-    const Bpmsheet = localStorage.getItem("bpm")|| '80';
+    const Bpmsheet = localStorage.getItem("bpm")|| 'z';
 
     const tabsEl = useRef<any>(null);
     const [song, setSong] = useState<string>("");

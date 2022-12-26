@@ -36,7 +36,7 @@ export const Home = () => {
     const [isLoading, setLoading] = useState<boolean>(false);
     const [fileList, setFileList] = useState<any>([]);
     const [audioResource, setAudioResource] = useState<any>()
-
+    
 
     const uploadProps: UploadProps = {
         name: 'file',
@@ -61,6 +61,7 @@ export const Home = () => {
       const handleSubmit = async (values: any) => {
         setLoading(true);
         console.log(values);
+        localStorage.setItem('bpm',"200")
         try {
             const formData = new FormData();
             formData.append('name', values.name);
@@ -76,6 +77,8 @@ export const Home = () => {
                 setLoading(true);
             }
             setLoading(false);
+
+            
             
         }catch(error: any) {
             setLoading(false);
@@ -91,7 +94,6 @@ export const Home = () => {
     return (
         <div className='home-container'>
             <div className="title">Upload song</div>
-            {/* {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"80"} str={str}  />} */}
             <section id='section-input'>
                 <Spin spinning={isLoading}>
                 <div className="transcriber-form">

@@ -52,7 +52,7 @@ export const Addsong = () => {
             {/* test */}
             <div className="App">
 
-      {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"80"} str={str}  />}
+      {modalOpen && <Modal setOpenModal={setModalOpen} bpm ={"200"} str={str}  />}
     </div>
 
             <div className="title">Add song</div>
